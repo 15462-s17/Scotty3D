@@ -4,18 +4,26 @@
 <link rel="icon" href="http://15462.courses.cs.cmu.edu/fall2016/assets/images/favicon/dragon.png" type="image/png">
 <title>Assignment 2 : Computer Graphics : 15-462/662 Fall 2016</title>
 
-<link rel="stylesheet" href="index_files/l_002.css" media="all"><script src="index_files/open-sansn3i3n4i4n6i6n7i7n8i8.js"></script>
-<link rel="stylesheet" href="index_files/l.css" media="all"><script src="index_files/open-sans-condensedn3i3n7.js"></script>
+<link rel="stylesheet" href="Assignment2_files/l_002.css" media="all"><link rel="stylesheet" href="Assignment2_files/l_004.css" media="all"><link rel="stylesheet" href="Assignment2_files/l_006.css" media="all"><script src="Assignment2_files/open-sansn3i3n4i4n6i6n7i7n8i8.js"></script>
+<link rel="stylesheet" href="Assignment2_files/l.css" media="all"><link rel="stylesheet" href="Assignment2_files/l_003.css" media="all"><link rel="stylesheet" href="Assignment2_files/l_005.css" media="all"><script src="Assignment2_files/open-sans-condensedn3i3n7.js"></script>
 
-<script src="index_files/jquery.js"></script>
-<script src="index_files/jquery_002.js"></script>
-<script src="index_files/jquery_003.js"></script>
+<script src="Assignment2_files/jquery.js"></script>
+<script src="Assignment2_files/jquery_002.js"></script>
+<script src="Assignment2_files/jquery_003.js"></script>
 
-<script src="index_files/codemirror.js"></script>
-<script src="index_files/markdown.js"></script>
+<script src="Assignment2_files/codemirror.js"></script>
+<script src="Assignment2_files/markdown.js"></script>
 
-<script type="text/javascript" src="index_files/MathJax.js">
-</script>
+<script type="text/javascript" src="Assignment2_files/MathJax.js">
+</script><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1px; bottom: 2px; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1px; bottom: 2px; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style>
 
 <script type="text/x-mathjax-config;executed=true">
 MathJax.Hub.Config({
@@ -29,13 +37,13 @@ MathJax.Hub.Config({
 </script>
 
 
-<link rel="stylesheet" type="text/css" href="index_files/codemirror.css">
+<link rel="stylesheet" type="text/css" href="Assignment2_files/codemirror.css">
 
-<script src="index_files/prettify.js"></script>
-<link rel="stylesheet" type="text/css" href="index_files/prettify.css">
+<script src="Assignment2_files/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="Assignment2_files/prettify.css">
 
 <!-- NOTE(kayvonf): place at end to override 3rd party tools -->
-<link rel="stylesheet" type="text/css" href="index_files/main.css">
+<link rel="stylesheet" type="text/css" href="Assignment2_files/main.css">
 
 <script type="text/javascript">
 var edit_comment_url = "http://15462.courses.cs.cmu.edu/fall2016/comments/ajax_edit_comment";
@@ -50,8 +58,8 @@ var prompt_students_url = "http://15462.courses.cs.cmu.edu/fall2016/comments/aja
 var keep_alive_url = "http://15462.courses.cs.cmu.edu/fall2016/keep_alive";
 </script>
 
-<script type="text/javascript" src="index_files/main.js"></script>
-<script type="text/javascript" src="index_files/comments.js"></script>
+<script type="text/javascript" src="Assignment2_files/main.js"></script>
+<script type="text/javascript" src="Assignment2_files/comments.js"></script>
 
 <style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
 .MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
@@ -182,25 +190,26 @@ img.MathJax_strut {border: 0!important; padding: 0!important; margin: 0!importan
 @font-face {font-family: MathJax_Size4; src: url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/woff/MathJax_Size4-Regular.woff?V=2.7.0') format('woff'), url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/otf/MathJax_Size4-Regular.otf?V=2.7.0') format('opentype')}
 .MathJax .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
 </style></head>
-<body><div style="visibility: hidden; overflow: hidden; position: absolute; top: 0px; height: 1px; width: auto; padding: 0px; border: 0px none; margin: 0px; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal;"><div id="MathJax_Hidden"></div></div><div id="MathJax_Message" style="display: none;"></div>
+<body><div id="MathJax_Message" style="display: none;"></div><div id="MathJax_Message" style="display: none;"></div><div style="visibility: hidden; overflow: hidden; position: absolute; top: 0px; height: 1px; width: auto; padding: 0px; border: 0px none; margin: 0px; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal;"><div id="MathJax_Hidden"></div></div><div id="MathJax_Message" style="display: none;"></div>
 
 <div id="modal_overlay"></div>
 
 <div class="main_container">
 
 <div class="topbar">
-<div class="topbar_left"><a href="http://15462.courses.cs.cmu.edu/fall2016/home">[Home]</a></div>
-<div class="topbar_left"><a href="http://15462.courses.cs.cmu.edu/fall2016/courseinfo">[Info]</a></div>
-<div class="topbar_left"><a href="http://15462.courses.cs.cmu.edu/fall2016/newsfeed">[Feed]</a></div>
-<div class="topbar_left"><a href="http://15462.courses.cs.cmu.edu/fall2016/lectures">[Lectures]</a></div>
-<div class="topbar_left"><a href="http://15462.courses.cs.cmu.edu/fall2016/exercises">[Quizzes]</a></div>
+<div class="topbar_left"><a href="https://www.cs.cmu.edu/%7E15462/">[Home]</a>
+</div>
+
+
+
+
 <!-- <div class="topbar_left"><a href="http://15462.courses.cs.cmu.edu/fall2016/projects">[Projects]</a></div> -->
 
 
 
 <div class="topbar_right">
 
-<a href="http://15462.courses.cs.cmu.edu/fall2016/users/login">[Login]</a>
+
 
 </div>
 
@@ -223,7 +232,7 @@ img.MathJax_strut {border: 0!important; padding: 0!important; margin: 0!importan
 
 
 <div class="markdown article-content">
-<p><img src="index_files/Scotty3DLogo.svg" alt="Scotty3DLogo"></p>
+<p><img src="Assignment2_files/Scotty3DLogo.svg" alt="Scotty3DLogo"></p>
 
 <h3>Overview</h3>
 
@@ -243,14 +252,14 @@ broader ecosystem of computer graphics software.</p>
 
 <h3>Important Information</h3>
 
-<p><strong>Due Date:</strong> Oct 13th, 2016 11:59pm</p>
+<p><strong>Due Date:</strong> March 1st, 2017 11:59pm</p>
 
 <p>You will need three things to complete this assignment:</p>
 
 <ol>
 <li><p>The <a href="https://github.com/15462-f16/Scotty3D">skeleton code for Scotty3D</a>---your implementation will modify the files <code>meshEdit.cpp</code> and <code>halfEdgeMesh.cpp</code>.</p></li>
-<li><p>The <a href="http://15462.courses.cs.cmu.edu/fall2016/article/14">User Guide</a> explains how to <em>use</em> the software to an end-user.</p></li>
-<li><p>The <a href="http://15462.courses.cs.cmu.edu/fall2016/article/15">Developer Manual</a> explains low-level details and internals of the code to a software developer.</p></li>
+<li><p>The <a href="https://15462-s17.github.io/Scotty3D/UserGuide.htm">User Guide</a> explains how to <em>use</em> the software to an end-user.</p></li>
+<li><p>The <a href="https://15462-s17.github.io/Scotty3D/DeveloperManual.htm">Developer Manual</a> explains low-level details and internals of the code to a software developer.</p></li>
 </ol>
 
 <p>Note that the User Guide is <strong>not</strong> the Assignment 
@@ -299,9 +308,9 @@ corner case---as long as it does not interfere with successful operation
 <p>The basic code skeleton will be distrbuted via <a href="https://en.wikipedia.org/wiki/Git">Git</a>.
   This skeleton includes basic functionality (e.g., file loading/saving,
  a graphical user interface, etc.), but the core software features have 
-been removed.  You can find the repository for this assignment at <a href="https://github.com/15462-f16/Scotty3D">https://github.com/15462-f16/Scotty3D</a>. If you are unfamiliar with git, here is what you need to do to get the starter code:</p>
+been removed.  You can find the repository for this assignment at <a href="https://github.com/15462-s17/Scotty3D">https://github.com/15462-s17/Scotty3D</a>. If you are unfamiliar with git, here is what you need to do to get the starter code:</p>
 
-<p><code>$ git clone https://github.com/15462-f16/Scotty3D.git</code></p>
+<p><code>$ git clone https://github.com/15462-s17/Scotty3D.git</code></p>
 
 <p>This will create a <i class="icon-folder"> </i> <em>Scotty3D</em> folder with all the source files.</p>
 
@@ -360,7 +369,7 @@ build directory by running</p>
 
 <p><code>./scotty3d ../cube.dae</code></p>
 
-<p>See more in the User Guide on <a href="https://github.com/15462-f16/Scotty3D/blob/master/Scotty3D_UserGuide.md">Github, Scotty3d UserGuide</a>.</p>
+<p>See more in the User Guide on <a href="https://15462-s17.github.io/Scotty3D/UserGuide.htm">Github, Scotty3d UserGuide</a>.</p>
 
 <p>Note that since most of the features of Scotty3D have not yet been 
 implemented, you may encounter occasional unexpected behavior (even 
@@ -371,7 +380,7 @@ implementations.</p>
 
 <p>Your handin directory is on AFS under:</p>
 
-<p><code>/afs/cs/academic/class/15462-f16-users/ANDREWID/asst2/</code></p>
+<p><code>/afs/cs/academic/class/15462-s17-users/ANDREWID/asst2/</code></p>
 
 <p>Note that you may need to create the <code>asst2</code> directory 
 yourself. All your files should be placed there. Please make sure you 
@@ -480,13 +489,9 @@ follows (these operations are described in the User Guide):</p>
  the requirements will be worth 2% of the final grade; each additional 
 global operation will be worth 4% of the final grade.</p>
 
-<h3>America's Next Top 3D Model</h3>
 
-<p>Every student is required to submit a 3D model created using their 
-implementation of Scotty3D, which will be automatically entered into a 
-class-wide 3D modeling competition.  Models will be critiqued and 
-evaluated based on both technical sophistication and aesthetic beauty.  
-The top <span class="MathJax_Preview" style="color: inherit; display: none;"></span><span class="MathJax" id="MathJax-Element-1-Frame" tabindex="0" style="position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;/math&gt;" role="presentation"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-1" style="width: 0.773em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.605em; height: 0px; font-size: 124%;"><span style="position: absolute; clip: rect(1.812em, 1000.59em, 2.595em, -1000em); top: -2.419em; left: 0em;"><span class="mrow" id="MathJax-Span-2"><span class="mi" id="MathJax-Span-3" style="font-family: MathJax_Math; font-style: italic;">n</span></span><span style="display: inline-block; width: 0px; height: 2.419em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.082em; border-left: 0px solid; width: 0px; height: 0.698em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>n</mi></math></span></span><script type="math/tex" id="MathJax-Element-1">n</script> models (for <span class="MathJax_Preview" style="color: inherit; display: none;"></span><span class="MathJax" id="MathJax-Element-2-Frame" tabindex="0" style="position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mo&gt;&amp;#x2265;&lt;/mo&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;/math&gt;" role="presentation"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-4" style="width: 3.027em; display: inline-block;"><span style="display: inline-block; position: relative; width: 2.419em; height: 0px; font-size: 124%;"><span style="position: absolute; clip: rect(1.588em, 1002.35em, 2.722em, -1000em); top: -2.419em; left: 0em;"><span class="mrow" id="MathJax-Span-5"><span class="mi" id="MathJax-Span-6" style="font-family: MathJax_Math; font-style: italic;">n</span><span class="mo" id="MathJax-Span-7" style="font-family: MathJax_Main; padding-left: 0.278em;">&#8805;</span><span class="mn" id="MathJax-Span-8" style="font-family: MathJax_Main; padding-left: 0.278em;">1</span></span><span style="display: inline-block; width: 0px; height: 2.419em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.239em; border-left: 0px solid; width: 0px; height: 1.133em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>n</mi><mo>&#8805;</mo><mn>1</mn></math></span></span><script type="math/tex" id="MathJax-Element-2">n \geq 1</script>) will be printed in 3D, showcased to the class, and given to the winners.  <strong>Note:</strong> Use of any other 3D package (e.g., free or commercial 3D modelers like <em>Maya</em> or <em>Blender</em>) is <em>strictly</em> prohibited!</p></div>
+
+</div>
 
 
 
