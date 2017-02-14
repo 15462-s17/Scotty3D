@@ -1,4 +1,9 @@
-![Scotty3DLogo](http://15462.courses.cs.cmu.edu/fall2016content/Scotty3D/images/Scotty3DLogo.svg)
+---
+layout: default
+---
+
+
+![Scotty3DLogo](/Scotty3DLogo.svg)
 
 ### Overview 
 
@@ -8,15 +13,15 @@ Your current assignment focuses on the MeshEdit component of Scotty3D, which per
 
 ### Important Information
 
-**Due Date:** Oct 13th, 2016 11:59pm
+**Due Date:** March 1st, 2017 11:59pm
 
 You will need three things to complete this assignment:
 
-1. The [skeleton code for Scotty3D](https://github.com/15462-f16/Scotty3D)---your implementation will modify the files `meshEdit.cpp` and `halfEdgeMesh.cpp`.
+1. The [skeleton code for Scotty3D](https://github.com/15462-s17/Scotty3D)---your implementation will modify the files `meshEdit.cpp` and `halfEdgeMesh.cpp`.
 
-2. The [User Guide](http://15462.courses.cs.cmu.edu/fall2016/article/14) explains how to _use_ the software to an end-user.
+2. The [User Guide](http://15462-s17.github.io/Scotty3D/pages/asst2_userguide.html) explains how to _use_ the software to an end-user.
 
-3. The [Developer Manual](http://15462.courses.cs.cmu.edu/fall2016/article/15) explains low-level details and internals of the code to a software developer.
+3. The [Developer Manual](http://15462-s17.github.io/Scotty3D/pages/asst2_usermanual.html) explains low-level details and internals of the code to a software developer.
 
 Note that the User Guide is **not** the Assignment Writeup. The User Guide contains only instructions on how to use the software, and serves as a high-level specification of _what the software should do_. The Developer Guide contains information about the internals of the code, i.e., _how the software works_.  This division is quite common in software development: there is a __design specification__ or "design spec", and an __implementation__ that implements that spec.  Also, as in the real world, the design spec does _not_ necessarily specify every tiny detail of how the software should behave!  Some behaviors may be undefined, and some of these details are left up to the party who implements the specification.  A good example you have already seen is OpenGL, which defines some important rules about how rasterization should behave, but is not a "pixel-exact" specification.  In other words, two different OpenGL implementations from two different vendors (Intel and NVIDIA, say) may produce images that differ by a number of pixels.  Likewise, in this assignment, your implementation may differ from the implementation of your classmates in terms of the exact values it produces, or the particular collection of corner-cases it handles.  However, as a developer you should strive to provide a solution that meets a few fundamental criteria:
 
@@ -34,10 +39,10 @@ If you encounter a tough corner case (e.g., "how should edge flip behave for a t
 
 ### Getting started
 
-The basic code skeleton will be distrbuted via [Git](https://en.wikipedia.org/wiki/Git).  This skeleton includes basic functionality (e.g., file loading/saving, a graphical user interface, etc.), but the core software features have been removed.  You can find the repository for this assignment at <https://github.com/15462-f16/Scotty3D>. If you are unfamiliar with git, here is what you need to do to get the starter code:
+The basic code skeleton will be distrbuted via [Git](https://en.wikipedia.org/wiki/Git).  This skeleton includes basic functionality (e.g., file loading/saving, a graphical user interface, etc.), but the core software features have been removed.  You can find the repository for this assignment at <https://github.com/15462-s17/Scotty3D>. If you are unfamiliar with git, here is what you need to do to get the starter code:
 
 ```
-$ git clone https://github.com/15462-f16/Scotty3D.git
+$ git clone https://github.com/15462-s17/Scotty3D.git
 ```
 
 This will create a <i class="icon-folder"> </i> *Scotty3D* folder with all the source files. 
@@ -99,7 +104,7 @@ When you have successfully built your code, you will get an executable named **s
 ./scotty3d ../cube.dae
 ```
 
-See more in the User Guide on [Github, Scotty3d UserGuide](https://github.com/15462-f16/Scotty3D/blob/master/Scotty3D_UserGuide.md).
+See more in the User Guide on [Github, Scotty3d UserGuide](https://github.com/15462-s17/Scotty3D/blob/master/Scotty3D_UserGuide.md).
 
 Note that since most of the features of Scotty3D have not yet been implemented, you may encounter occasional unexpected behavior (even crashes!).  Your goal is to replace these blank routines with stable implementations.
 
@@ -109,7 +114,7 @@ Note that since most of the features of Scotty3D have not yet been implemented, 
 Your handin directory is on AFS under:
 
 ```
-/afs/cs/academic/class/15462-f16-users/ANDREWID/asst2/
+/afs/cs/academic/class/15462-s17-users/ANDREWID/asst2/
 ```
 
 Note that you may need to create the `asst2` directory yourself. All your files should be placed there. Please make sure you have a directory and are able to write to it well before the deadline; we are not responsible if you wait until 10 minutes before the deadline and run into trouble. Also, you may need to run `aklog cs.cmu.edu` after you login in order to read from/write to your submission directory.
