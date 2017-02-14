@@ -4,17 +4,17 @@
 <link rel="icon" href="http://15462.courses.cs.cmu.edu/fall2016/assets/images/favicon/dragon.png" type="image/png">
 <title>Scotty3D Developer Manual : Computer Graphics : 15-462/662 Fall 2016</title>
 
-<link rel="stylesheet" href="Scotty3D%20Developer%20Manual%20%20%20Computer%20Graphics%20%20%2015-462_662%20Spring%202017_files/l_002.css" media="all"><script src="Scotty3D%20Developer%20Manual%20%20%20Computer%20Graphics%20%20%2015-462_662%20Spring%202017_files/open-sansn3i3n4i4n6i6n7i7n8i8.js"></script>
-<link rel="stylesheet" href="Scotty3D%20Developer%20Manual%20%20%20Computer%20Graphics%20%20%2015-462_662%20Spring%202017_files/l.css" media="all"><script src="Scotty3D%20Developer%20Manual%20%20%20Computer%20Graphics%20%20%2015-462_662%20Spring%202017_files/open-sans-condensedn3i3n7.js"></script>
+<link rel="stylesheet" href="DeveloperManual_files/l_002.css" media="all"><script src="DeveloperManual_files/open-sansn3i3n4i4n6i6n7i7n8i8.js"></script>
+<link rel="stylesheet" href="DeveloperManual_files/l.css" media="all"><script src="DeveloperManual_files/open-sans-condensedn3i3n7.js"></script>
 
-<script src="Scotty3D%20Developer%20Manual%20%20%20Computer%20Graphics%20%20%2015-462_662%20Spring%202017_files/jquery_002.js"></script>
-<script src="Scotty3D%20Developer%20Manual%20%20%20Computer%20Graphics%20%20%2015-462_662%20Spring%202017_files/jquery.js"></script>
-<script src="Scotty3D%20Developer%20Manual%20%20%20Computer%20Graphics%20%20%2015-462_662%20Spring%202017_files/jquery_003.js"></script>
+<script src="DeveloperManual_files/jquery_002.js"></script>
+<script src="DeveloperManual_files/jquery.js"></script>
+<script src="DeveloperManual_files/jquery_003.js"></script>
 
-<script src="Scotty3D%20Developer%20Manual%20%20%20Computer%20Graphics%20%20%2015-462_662%20Spring%202017_files/codemirror.js"></script>
-<script src="Scotty3D%20Developer%20Manual%20%20%20Computer%20Graphics%20%20%2015-462_662%20Spring%202017_files/markdown.js"></script>
+<script src="DeveloperManual_files/codemirror.js"></script>
+<script src="DeveloperManual_files/markdown.js"></script>
 
-<script type="text/javascript" src="Scotty3D%20Developer%20Manual%20%20%20Computer%20Graphics%20%20%2015-462_662%20Spring%202017_files/MathJax.js">
+<script type="text/javascript" src="DeveloperManual_files/MathJax.js">
 </script>
 
 <script type="text/x-mathjax-config;executed=true">
@@ -29,13 +29,13 @@ MathJax.Hub.Config({
 </script>
 
 
-<link rel="stylesheet" type="text/css" href="Scotty3D%20Developer%20Manual%20%20%20Computer%20Graphics%20%20%2015-462_662%20Spring%202017_files/codemirror.css">
+<link rel="stylesheet" type="text/css" href="DeveloperManual_files/codemirror.css">
 
-<script src="Scotty3D%20Developer%20Manual%20%20%20Computer%20Graphics%20%20%2015-462_662%20Spring%202017_files/prettify.js"></script>
-<link rel="stylesheet" type="text/css" href="Scotty3D%20Developer%20Manual%20%20%20Computer%20Graphics%20%20%2015-462_662%20Spring%202017_files/prettify.css">
+<script src="DeveloperManual_files/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="DeveloperManual_files/prettify.css">
 
 <!-- NOTE(kayvonf): place at end to override 3rd party tools -->
-<link rel="stylesheet" type="text/css" href="Scotty3D%20Developer%20Manual%20%20%20Computer%20Graphics%20%20%2015-462_662%20Spring%202017_files/main.css">
+<link rel="stylesheet" type="text/css" href="DeveloperManual_files/main.css">
 
 <script type="text/javascript">
 var edit_comment_url = "http://15462.courses.cs.cmu.edu/fall2016/comments/ajax_edit_comment";
@@ -50,8 +50,8 @@ var prompt_students_url = "http://15462.courses.cs.cmu.edu/fall2016/comments/aja
 var keep_alive_url = "http://15462.courses.cs.cmu.edu/fall2016/keep_alive";
 </script>
 
-<script type="text/javascript" src="Scotty3D%20Developer%20Manual%20%20%20Computer%20Graphics%20%20%2015-462_662%20Spring%202017_files/main.js"></script>
-<script type="text/javascript" src="Scotty3D%20Developer%20Manual%20%20%20Computer%20Graphics%20%20%2015-462_662%20Spring%202017_files/comments.js"></script>
+<script type="text/javascript" src="DeveloperManual_files/main.js"></script>
+<script type="text/javascript" src="DeveloperManual_files/comments.js"></script>
 
 <style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
 .MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
@@ -148,8 +148,41 @@ var keep_alive_url = "http://15462.courses.cs.cmu.edu/fall2016/keep_alive";
 .MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
 .MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
 .MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style><style type="text/css">.MathJax_Display {text-align: center; margin: 1em 0em; position: relative; display: block!important; text-indent: 0; max-width: none; max-height: none; min-width: 0; min-height: 0; width: 100%}
+.MathJax .merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MathJax .MJX-monospace {font-family: monospace}
+.MathJax .MJX-sans-serif {font-family: sans-serif}
+#MathJax_Tooltip {background-color: InfoBackground; color: InfoText; border: 1px solid black; box-shadow: 2px 2px 5px #AAAAAA; -webkit-box-shadow: 2px 2px 5px #AAAAAA; -moz-box-shadow: 2px 2px 5px #AAAAAA; -khtml-box-shadow: 2px 2px 5px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true'); padding: 3px 4px; z-index: 401; position: absolute; left: 0; top: 0; width: auto; height: auto; display: none}
+.MathJax {display: inline; font-style: normal; font-weight: normal; line-height: normal; font-size: 100%; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; padding: 0; margin: 0}
+.MathJax:focus, body :focus .MathJax {display: inline-table}
+.MathJax.MathJax_FullWidth {text-align: center; display: table-cell!important; width: 10000em!important}
+.MathJax img, .MathJax nobr, .MathJax a {border: 0; padding: 0; margin: 0; max-width: none; max-height: none; min-width: 0; min-height: 0; vertical-align: 0; line-height: normal; text-decoration: none}
+img.MathJax_strut {border: 0!important; padding: 0!important; margin: 0!important; vertical-align: 0!important}
+.MathJax span {display: inline; position: static; border: 0; padding: 0; margin: 0; vertical-align: 0; line-height: normal; text-decoration: none}
+.MathJax nobr {white-space: nowrap!important}
+.MathJax img {display: inline!important; float: none!important}
+.MathJax * {transition: none; -webkit-transition: none; -moz-transition: none; -ms-transition: none; -o-transition: none}
+.MathJax_Processing {visibility: hidden; position: fixed; width: 0; height: 0; overflow: hidden}
+.MathJax_Processed {display: none!important}
+.MathJax_ExBox {display: block!important; overflow: hidden; width: 1px; height: 60ex; min-height: 0; max-height: none}
+.MathJax .MathJax_EmBox {display: block!important; overflow: hidden; width: 1px; height: 60em; min-height: 0; max-height: none}
+.MathJax_LineBox {display: table!important}
+.MathJax_LineBox span {display: table-cell!important; width: 10000em!important; min-width: 0; max-width: none; padding: 0; border: 0; margin: 0}
+.MathJax .MathJax_HitBox {cursor: text; background: white; opacity: 0; filter: alpha(opacity=0)}
+.MathJax .MathJax_HitBox * {filter: none; opacity: 1; background: transparent}
+#MathJax_Tooltip * {filter: none; opacity: 1; background: transparent}
+@font-face {font-family: MathJax_Main; src: url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/woff/MathJax_Main-Regular.woff?V=2.7.0') format('woff'), url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/otf/MathJax_Main-Regular.otf?V=2.7.0') format('opentype')}
+@font-face {font-family: MathJax_Main; src: url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/woff/MathJax_Main-Bold.woff?V=2.7.0') format('woff'), url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/otf/MathJax_Main-Bold.otf?V=2.7.0') format('opentype'); font-weight: bold}
+@font-face {font-family: MathJax_Main; src: url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/woff/MathJax_Main-Italic.woff?V=2.7.0') format('woff'), url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/otf/MathJax_Main-Italic.otf?V=2.7.0') format('opentype'); font-style: italic}
+@font-face {font-family: MathJax_Math; src: url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/woff/MathJax_Math-Italic.woff?V=2.7.0') format('woff'), url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/otf/MathJax_Math-Italic.otf?V=2.7.0') format('opentype'); font-style: italic}
+@font-face {font-family: MathJax_Caligraphic; src: url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/woff/MathJax_Caligraphic-Regular.woff?V=2.7.0') format('woff'), url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/otf/MathJax_Caligraphic-Regular.otf?V=2.7.0') format('opentype')}
+@font-face {font-family: MathJax_Size1; src: url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/woff/MathJax_Size1-Regular.woff?V=2.7.0') format('woff'), url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/otf/MathJax_Size1-Regular.otf?V=2.7.0') format('opentype')}
+@font-face {font-family: MathJax_Size2; src: url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/woff/MathJax_Size2-Regular.woff?V=2.7.0') format('woff'), url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/otf/MathJax_Size2-Regular.otf?V=2.7.0') format('opentype')}
+@font-face {font-family: MathJax_Size3; src: url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/woff/MathJax_Size3-Regular.woff?V=2.7.0') format('woff'), url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/otf/MathJax_Size3-Regular.otf?V=2.7.0') format('opentype')}
+@font-face {font-family: MathJax_Size4; src: url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/woff/MathJax_Size4-Regular.woff?V=2.7.0') format('woff'), url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/otf/MathJax_Size4-Regular.otf?V=2.7.0') format('opentype')}
+.MathJax .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
 </style></head>
-<body><div id="MathJax_Message" style="display: none;"></div>
+<body><div style="visibility: hidden; overflow: hidden; position: absolute; top: 0px; height: 1px; width: auto; padding: 0px; border: 0px none; margin: 0px; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal;"><div id="MathJax_Hidden"></div></div><div id="MathJax_Message" style="display: none;"></div>
 
 <div id="modal_overlay"></div>
 
@@ -190,7 +223,7 @@ var keep_alive_url = "http://15462.courses.cs.cmu.edu/fall2016/keep_alive";
 
 
 <div class="markdown article-content">
-<p><img src="Scotty3D%20Developer%20Manual%20%20%20Computer%20Graphics%20%20%2015-462_662%20Spring%202017_files/Scotty3DLogo.svg" alt="Scotty3DLogo"></p>
+<p><img src="DeveloperManual_files/Scotty3DLogo.svg" alt="Scotty3DLogo"></p>
 
 <h2>Overview</h2>
 
@@ -219,7 +252,7 @@ acts like "glue" connecting the different elements.  It is this glue
 that allow us to easily "navigate" the mesh, i.e., easily access mesh 
 elements adjacent to a given element.</p>
 
-<p><img src="Scotty3D%20Developer%20Manual%20%20%20Computer%20Graphics%20%20%2015-462_662%20Spring%202017_files/halfedgePointers.png" alt="halfedgePointers" height="216" width="382"></p>
+<p><img src="DeveloperManual_files/halfedgePointers.png" alt="halfedgePointers" height="216" width="382"></p>
 
 <p>In particular, there are two halfedges associated with each edge (see
  picture above).  For an edge connecting two vertices i and j, one of 
@@ -280,7 +313,7 @@ then its next halfedge; this final halfedge will also point out of
 vertex v, but it will point <strong>toward</strong> a different vertex than the first halfedge. By repeating this process, we can visit all the neighboring vertices:</p>
 
 <p></p><center>
-<img src="Scotty3D%20Developer%20Manual%20%20%20Computer%20Graphics%20%20%2015-462_662%20Spring%202017_files/vertexTraversal.png" alt="Walking around a vertex" height="382" width="327">
+<img src="DeveloperManual_files/vertexTraversal.png" alt="Walking around a vertex" height="382" width="327">
 </center><p></p>
 
 <p>In some sense, a halfedge mesh is kind of like a linked list on 
@@ -385,7 +418,7 @@ the domain boundary. Additionally, we store an explicit list of boundary
  will not show up when iterating over faces.  The figure below should 
 help to further explain the behavior of <code>HalfedgeMesh</code> for surfaces with boundary:</p>
 
-<p><img src="Scotty3D%20Developer%20Manual%20%20%20Computer%20Graphics%20%20%2015-462_662%20Spring%202017_files/boundaryConventions.png" alt="Boundary conventions" height="375" width="396"></p>
+<p><img src="DeveloperManual_files/boundaryConventions.png" alt="Boundary conventions" height="375" width="396"></p>
 
 <p>Dark blue regions indicate interior faces, whereas light blue regions
  indicate virtual boundary faces.  A vertex, edge, or halfedge is 
@@ -410,10 +443,7 @@ boundary vertex.</p>
 <p>Many of the actions that need to be implemented in the MeshEdit mode 
 are local mesh operations (like edge collapse, face bevel, etc.).  Here 
 we provide a step-by-step guide to implementing a simplied version of 
-the <em>EdgeFlip</em> operation for a pair of triangles---the final 
-version, however, must be implemented for general polygons (i.e., any 
-$n$-gon).  The basic strategy for implementing the other local 
-operations is quite similar to the procedure outlined below.  <strong>Note:</strong> if you're not familiar with C++, you should definitely take a moment to learn about the <a href="http://en.cppreference.com/w/cpp/container/vector">standard library class</a> <code>std::vector</code>, especially the method <code>push_back()</code>, which will make it easy to accumulate a list of pointers as you walk around a polygon, vertex, etc.</p>
+the <em>EdgeFlip</em> operation for a pair of triangles---the final version, however, must be implemented for general polygons (i.e., any <span class="MathJax_Preview" style="color: inherit; display: none;"></span><span class="MathJax" id="MathJax-Element-1-Frame" tabindex="0" style="position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;/math&gt;" role="presentation"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-1" style="width: 0.773em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.605em; height: 0px; font-size: 124%;"><span style="position: absolute; clip: rect(1.812em, 1000.59em, 2.595em, -1000em); top: -2.419em; left: 0em;"><span class="mrow" id="MathJax-Span-2"><span class="mi" id="MathJax-Span-3" style="font-family: MathJax_Math; font-style: italic;">n</span></span><span style="display: inline-block; width: 0px; height: 2.419em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.082em; border-left: 0px solid; width: 0px; height: 0.698em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>n</mi></math></span></span><script type="math/tex" id="MathJax-Element-1">n</script>-gon).  The basic strategy for implementing the other local operations is quite similar to the procedure outlined below.  <strong>Note:</strong> if you're not familiar with C++, you should definitely take a moment to learn about the <a href="http://en.cppreference.com/w/cpp/container/vector">standard library class</a> <code>std::vector</code>, especially the method <code>push_back()</code>, which will make it easy to accumulate a list of pointers as you walk around a polygon, vertex, etc.</p>
 
 <p>A good recipe for ensuring that all pointers are still valid after a local remeshing operation is:</p>
 
@@ -442,7 +472,7 @@ flipping the edge (b,c), we should now have triangles (a,d,c) and
 operation:</p>
 
 <p></p><center>
-<img src="Scotty3D%20Developer%20Manual%20%20%20Computer%20Graphics%20%20%2015-462_662%20Spring%202017_files/edgeFlipBeforeAfter.png" alt="Edge flip before and after" height="225" width="673">
+<img src="DeveloperManual_files/edgeFlipBeforeAfter.png" alt="Edge flip before and after" height="225" width="673">
 </center><p></p>
 
 <p>Here we have drawn a diagram of the region around the edge both 
@@ -612,7 +642,7 @@ components:</p>
 
 <p>These relationships are illustrated by the following diagram:</p>
 
-<p><img src="Scotty3D%20Developer%20Manual%20%20%20Computer%20Graphics%20%20%2015-462_662%20Spring%202017_files/Scotty3DBeveledData.svg" alt="BeveledData"></p>
+<p><img src="DeveloperManual_files/Scotty3DBeveledData.svg" alt="BeveledData"></p>
 
 <p>The basic recipe for updating the vertex positions is then:</p>
 
@@ -629,7 +659,7 @@ array is that it makes it easy to access positions "to the left" and "to
 out the offset from the corner of a polygon.  We might want to compute 
 some geometric quantity involving the three vertex positions <code>orig[i-1]</code>, <code>orig[i]</code>, and <code>orig[i+1]</code> (as well as <code>inset</code>), then set the new vertex position <code>hs[i]-&gt;vertex()-&gt;position</code> to this new value:</p>
 
-<p><img src="Scotty3D%20Developer%20Manual%20%20%20Computer%20Graphics%20%20%2015-462_662%20Spring%202017_files/Scotty3DBevelIndexing.svg" alt="BevelIndexing"></p>
+<p><img src="DeveloperManual_files/Scotty3DBevelIndexing.svg" alt="BevelIndexing"></p>
 
 <p>A useful trick here is <em>modular arithmetic</em>: since we really 
 have a "loop" of vertices, we want to make sure that indexing the next 
@@ -759,7 +789,7 @@ above).</p>
 common patterns are to connect every vertex to a single vertex, or to 
 "zig-zag" the triangulation across the polygon:</p>
 
-<p><img src="Scotty3D%20Developer%20Manual%20%20%20Computer%20Graphics%20%20%2015-462_662%20Spring%202017_files/Scotty3DTriangulate.svg" alt="Scotty3DTriangulate"></p>
+<p><img src="DeveloperManual_files/Scotty3DTriangulate.svg" alt="Scotty3DTriangulate"></p>
 
 <p>The <code>splitPolygon</code> routine is not required to produce any particular triangulation so long as:</p>
 
@@ -838,7 +868,7 @@ or triangles only.  Each $n$-gon (including but not limited to
 quadrilaterals) will be split into $n$ quadrailaterals according to the 
 following template:</p>
 
-<p><img src="Scotty3D%20Developer%20Manual%20%20%20Computer%20Graphics%20%20%2015-462_662%20Spring%202017_files/Scotty3DQuadSubdivide.svg" alt="Scotty3DQuadSubdivide"></p>
+<p><img src="DeveloperManual_files/Scotty3DQuadSubdivide.svg" alt="Scotty3DQuadSubdivide"></p>
 
 <p>The high-level procedure is outlined in greater detail in <code>HalfedgeMesh::subdivideQuad</code>.</p>
 
@@ -1003,13 +1033,13 @@ Catmull-Clark subdivision.</p>
 <p>The 4-1 subdivision looks like this:</p>
 
 <p></p><center>
-<img src="Scotty3D%20Developer%20Manual%20%20%20Computer%20Graphics%20%20%2015-462_662%20Spring%202017_files/41Subdivision.png" alt="4-1 Subdivision" height="157" width="500">
+<img src="DeveloperManual_files/41Subdivision.png" alt="4-1 Subdivision" height="157" width="500">
 </center><p></p>
 
 <p>And the following picture illustrates the weighted average:</p>
 
 <p></p><center>
-<img src="Scotty3D%20Developer%20Manual%20%20%20Computer%20Graphics%20%20%2015-462_662%20Spring%202017_files/LoopWeights.png" alt="Loop subdivision weights" height="157" width="500">
+<img src="DeveloperManual_files/LoopWeights.png" alt="Loop subdivision weights" height="157" width="500">
 </center><p></p>
 
 <p>In words, the new position of an old vertice is (1 - nu) times the 
@@ -1035,7 +1065,7 @@ strategy:</p>
 <p>The following pictures (courtesy Denis Zorin) illustrate this idea:</p>
 
 <p></p><center>
-<img src="Scotty3D%20Developer%20Manual%20%20%20Computer%20Graphics%20%20%2015-462_662%20Spring%202017_files/FlippingSubdivision.png" alt="Subdivision via flipping" height="225" width="500">
+<img src="DeveloperManual_files/FlippingSubdivision.png" alt="Subdivision via flipping" height="225" width="500">
 </center><p></p>
 
 <p>Notice that only blue (and not black) edges are flipped in this 
@@ -1142,7 +1172,7 @@ members <code>isNew</code> for vertices and edges created by the split. It is al
 <p>You might try implementing this algorithm in stages, e.g., <em>first</em> see if you can correctly update the connectivity, <em>then</em> worry about getting the vertex positions right. Some examples below illustrate the correct behavior of the algorithm.</p>
 
 <p></p><center>
-<img src="Scotty3D%20Developer%20Manual%20%20%20Computer%20Graphics%20%20%2015-462_662%20Spring%202017_files/SubdivisionExamples.png" alt="Loop subdivision examples" height="435" width="700">
+<img src="DeveloperManual_files/SubdivisionExamples.png" alt="Loop subdivision examples" height="435" width="700">
 </center><p></p>
 
 <hr>
@@ -1150,7 +1180,7 @@ members <code>isNew</code> for vertices and edges created by the split. It is al
 <h3>Simplification</h3>
 
 <p></p><center>
-<img src="Scotty3D%20Developer%20Manual%20%20%20Computer%20Graphics%20%20%2015-462_662%20Spring%202017_files/QEMSimplification.png" alt="Surface simplification via quadric error metric" height="222" width="754">
+<img src="DeveloperManual_files/QEMSimplification.png" alt="Surface simplification via quadric error metric" height="222" width="754">
 </center><p></p>
 
 <p>Just as with images, meshes often have far more samples than we 
@@ -1178,7 +1208,7 @@ together.</p>
 <p>$$d(x) = N \cdot (x - p)$$</p>
 
 <p></p><center>
-<img src="Scotty3D%20Developer%20Manual%20%20%20Computer%20Graphics%20%20%2015-462_662%20Spring%202017_files/PlaneNormalEquation.png" alt="Plane normal equation" height="298" width="400">
+<img src="DeveloperManual_files/PlaneNormalEquation.png" alt="Plane normal equation" height="298" width="400">
 </center><p></p>
 
 <p>In other words, we measure the extent of the vector from $p$ to $x$ 
@@ -1216,7 +1246,7 @@ say that the distance to a small neighborhood around the vertex i can be
 <p>$$K_i = \sum_{\text{all faces ijk touching vertex i}} K_{ijk}$$</p>
 
 <p></p><center>
-<img src="Scotty3D%20Developer%20Manual%20%20%20Computer%20Graphics%20%20%2015-462_662%20Spring%202017_files/VertexNormals.png" alt="Vertex normals" height="318" width="325">
+<img src="DeveloperManual_files/VertexNormals.png" alt="Vertex normals" height="318" width="325">
 </center><p></p>
 
 <p>Likewise, the distance to an <em>edge</em> ij will be approximated by the sum of the quadrics at its two endpoints:</p>
@@ -1414,7 +1444,7 @@ below. You may find it easiest to implement this algorithm in stages.
 For instance, <em>first</em> get the edge collapses working, using just the edge midpoint rather than the optimal point, <em>then</em> worry about solving for the point that minimizes quadric error.</p>
 
 <p></p><center>
-<img src="Scotty3D%20Developer%20Manual%20%20%20Computer%20Graphics%20%20%2015-462_662%20Spring%202017_files/QEMExamples.png" alt="Quadric error simplification examples" height="700" width="600">
+<img src="DeveloperManual_files/QEMExamples.png" alt="Quadric error simplification examples" height="700" width="600">
 </center><p></p>
 
 <h3>Isotropic Remeshing</h3>
@@ -1478,7 +1508,7 @@ vertices are traversed (if you're interested in learning more about this
 all vertices, and (ii) then update the vertices with new positions.</p>
 
 <p></p><center>
-<img src="Scotty3D%20Developer%20Manual%20%20%20Computer%20Graphics%20%20%2015-462_662%20Spring%202017_files/LaplacianSmoothing.png" alt="Laplacian smoothing" height="183" width="500">
+<img src="DeveloperManual_files/LaplacianSmoothing.png" alt="Laplacian smoothing" height="183" width="500">
 </center><p></p>
 
 <p>How exactly should the positions be updated?  One idea is to simply 
@@ -1524,7 +1554,7 @@ cross product of two of the triangle's edge vectors (properly oriented).</p>
 times for each "outer" iteration.</p>
 
 <p></p><center>
-<img src="Scotty3D%20Developer%20Manual%20%20%20Computer%20Graphics%20%20%2015-462_662%20Spring%202017_files/IsotropicExamples.png" alt="Isotropic remeshing examples" height="637" width="700">
+<img src="DeveloperManual_files/IsotropicExamples.png" alt="Isotropic remeshing examples" height="637" width="700">
 </center><p></p>
 
 <h2>Path Tracing</h2>
@@ -1706,11 +1736,11 @@ visualize a BVH as shown below.  The current BVH node is highlighted in
 red.  Primitives in the left and right subtrees of the current BVH node 
 are rendered in different colors.  <strong>Press the <kbd>LEFT</kbd> or <kbd>RIGHT</kbd> keys to descend to child nodes of the mesh. Press <kbd>UP</kbd></strong> to move the parent of the current node.</p>
 
-<p><img src="Scotty3D%20Developer%20Manual%20%20%20Computer%20Graphics%20%20%2015-462_662%20Spring%202017_files/cow_bvh.png" alt="BVH Vis"></p>
+<p><img src="DeveloperManual_files/cow_bvh.png" alt="BVH Vis"></p>
 
 <p>Another view showing the contents of a lower node in the BVH:</p>
 
-<p><img src="Scotty3D%20Developer%20Manual%20%20%20Computer%20Graphics%20%20%2015-462_662%20Spring%202017_files/cow_bvh_2.png" alt="BVH Vis"></p>
+<p><img src="DeveloperManual_files/cow_bvh_2.png" alt="BVH Vis"></p>
 
 <p><strong>Step 2:</strong> Implement the ray-BVH intersection routines required by the <code>Primitive</code>
  interface.  You may wish to consider the node visit order optimizations
@@ -1749,9 +1779,9 @@ avoid these erroneous "self-intersections".  For example, <code>o</code> = <code
 example, here is the Stanford Dragon model rendered with both a 
 directional light and a hemispherical light.</p>
 
-<p><img src="Scotty3D%20Developer%20Manual%20%20%20Computer%20Graphics%20%20%2015-462_662%20Spring%202017_files/shadow_directional.png" alt="Shadow directional"></p>
+<p><img src="DeveloperManual_files/shadow_directional.png" alt="Shadow directional"></p>
 
-<p><img src="Scotty3D%20Developer%20Manual%20%20%20Computer%20Graphics%20%20%2015-462_662%20Spring%202017_files/shadow_hemisphere.png" alt="Shadow directional"></p>
+<p><img src="DeveloperManual_files/shadow_hemisphere.png" alt="Shadow directional"></p>
 
 <h3>Task 5: Adding Path Tracing</h3>
 
@@ -1817,7 +1847,7 @@ and path tracing, your renderer should be able to make a beautifully lit
  picture of the Cornell Box with:</p>
 
 <p><code>./scotty3d -s 1024 -m 2 -t 8 ../dae/sky/CBspheres_lambertian.dae</code>
- <img src="Scotty3D%20Developer%20Manual%20%20%20Computer%20Graphics%20%20%2015-462_662%20Spring%202017_files/cornell_lambertian.png" alt="Cornell Box Lambertian"></p>
+ <img src="DeveloperManual_files/cornell_lambertian.png" alt="Cornell Box Lambertian"></p>
 
 <p>Note the time-quality tradeoff here. With these commandline 
 arguments, your path tracer will be running with 8 worker threads at a 
@@ -1827,7 +1857,7 @@ quite some time to render. Rendering a high quality image will take a
 very long time as indicated by the image sequence below, so start 
 testing your path tracer early!</p>
 
-<p><img src="Scotty3D%20Developer%20Manual%20%20%20Computer%20Graphics%20%20%2015-462_662%20Spring%202017_files/spheres.png" alt="Time-Quality Tradeoff "></p>
+<p><img src="DeveloperManual_files/spheres.png" alt="Time-Quality Tradeoff "></p>
 
 <p>Here are a few tips:</p>
 
@@ -1890,7 +1920,7 @@ reflectance is 0.9, then you should generate a reflection ray 90% of the
 
 <p>When you are done, you will be able to render images like these:</p>
 
-<p><img src="Scotty3D%20Developer%20Manual%20%20%20Computer%20Graphics%20%20%2015-462_662%20Spring%202017_files/cornell_classic.png" alt="Cornell box spheres 256"></p>
+<p><img src="DeveloperManual_files/cornell_classic.png" alt="Cornell box spheres 256"></p>
 
 <h3>Task 7: Infinite Environment Lighting</h3>
 
@@ -1904,7 +1934,7 @@ environment lighting can be quite striking.</p>
 
 <p>The intensity of incoming light from each direction is defined by a texture map parameterized by phi and theta, as shown below.</p>
 
-<p><img src="Scotty3D%20Developer%20Manual%20%20%20Computer%20Graphics%20%20%2015-462_662%20Spring%202017_files/envmap_figure.jpg" alt="Environment map"></p>
+<p><img src="DeveloperManual_files/envmap_figure.jpg" alt="Environment map"></p>
 
 <p>In this task you need to implement the <code>EnvironmentLight::sample_L()</code> method in <i class="icon-file"> </i> <em>static_scene/environment_light.cpp</em>.
   You'll start with uniform direction sampling to get things working, 
@@ -1974,4 +2004,4 @@ product of its luminance and the solid angle it subtends.</li>
 
 
 
-</body></html>
+<div style="position: absolute; width: 0px; height: 0px; overflow: hidden; padding: 0px; border: 0px none; margin: 0px;"><div id="MathJax_Font_Test" style="position: absolute; visibility: hidden; top: 0px; left: 0px; width: auto; padding: 0px; border: 0px none; margin: 0px; white-space: nowrap; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; font-size: 40px; font-weight: normal; font-style: italic; font-size-adjust: none; font-family: MathJax_Math,sans-serif;"></div></div></body></html>
