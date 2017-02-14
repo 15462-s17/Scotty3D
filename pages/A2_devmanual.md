@@ -1,3 +1,9 @@
+---
+layout: page
+title: 15462 - Assignment 2 Development Manual
+description: 15462 - Assignment 2 Development Manual
+---
+
 ![Scotty3DLogo](http://15462.courses.cs.cmu.edu/fall2016content/Scotty3D/images/Scotty3DLogo.svg)
 
 ## Overview
