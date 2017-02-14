@@ -1,3 +1,9 @@
+---
+layout: page
+title: 15462 - Assignment 2 User Guide
+description: 15462 - Assignment 2 User Guide
+---
+
 ![Scotty3DLogo](http://15462.courses.cs.cmu.edu/fall2016content/Scotty3D/images/Scotty3DLogo.svg)
 
 Scotty3D is a full-featured software package for 3D modeling, rendering, and animation.  The only problem is that we've removed most of the features! :-)
