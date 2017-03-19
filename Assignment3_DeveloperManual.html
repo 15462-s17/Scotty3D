@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html class="wf-opensans-i3-active wf-opensans-i4-active wf-opensans-i6-active wf-opensans-i7-active wf-opensans-i8-active wf-opensans-n3-active wf-opensans-n4-active wf-opensans-n6-active wf-opensans-n7-active wf-opensans-n8-active wf-active wf-opensanscondensed-i3-active wf-opensanscondensed-n3-active wf-opensanscondensed-n7-active"><head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<link rel="icon" href="http://15462.courses.cs.cmu.edu/fall2016/assets/images/favicon/dragon.png" type="image/png">
+<title>Scotty3D Developer Manual : Computer Graphics : 15-462/662 Fall 2016</title>
+
+<link rel="stylesheet" href="Assignment2_DeveloperManual_files/l_002.css" media="all"><link rel="stylesheet" href="Assignment2_DeveloperManual_files/l_004.css" media="all"><link rel="stylesheet" href="Assignment2_DeveloperManual_files/l_006.css" media="all"><link rel="stylesheet" href="Assignment2_DeveloperManual_files/l_008.css" media="all"><link rel="stylesheet" href="Assignment2_DeveloperManual_files/l_010.css" media="all"><script src="Assignment2_DeveloperManual_files/open-sansn3i3n4i4n6i6n7i7n8i8.js"></script>
+<link rel="stylesheet" href="Assignment2_DeveloperManual_files/l.css" media="all"><link rel="stylesheet" href="Assignment2_DeveloperManual_files/l_003.css" media="all"><link rel="stylesheet" href="Assignment2_DeveloperManual_files/l_005.css" media="all"><link rel="stylesheet" href="Assignment2_DeveloperManual_files/l_007.css" media="all"><link rel="stylesheet" href="Assignment2_DeveloperManual_files/l_009.css" media="all"><script src="Assignment2_DeveloperManual_files/open-sans-condensedn3i3n7.js"></script>
+
+<script src="Assignment2_DeveloperManual_files/jquery_002.js"></script>
+<script src="Assignment2_DeveloperManual_files/jquery.js"></script>
+<script src="Assignment2_DeveloperManual_files/jquery_003.js"></script>
+
+<script src="Assignment2_DeveloperManual_files/codemirror.js"></script>
+<script src="Assignment2_DeveloperManual_files/markdown.js"></script>
+
+<script type="text/javascript" src="Assignment2_DeveloperManual_files/MathJax.js">
+</script><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1px; bottom: 2px; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1px; bottom: 2px; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1px; bottom: 2px; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1px; bottom: 2px; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style>
+
+<script type="text/x-mathjax-config;executed=true">
+MathJax.Hub.Config({
+  skipStartupTypeset: true,
+  showProcessingMessages: false,
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});
+</script>
+
+
+<link rel="stylesheet" type="text/css" href="Assignment2_DeveloperManual_files/codemirror.css">
+
+<script src="Assignment2_DeveloperManual_files/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="Assignment2_DeveloperManual_files/prettify.css">
+
+<!-- NOTE(kayvonf): place at end to override 3rd party tools -->
+<link rel="stylesheet" type="text/css" href="Assignment2_DeveloperManual_files/main.css">
+
+<script type="text/javascript">
+var edit_comment_url = "http://15462.courses.cs.cmu.edu/fall2016/comments/ajax_edit_comment";
+var delete_comment_url = "http://15462.courses.cs.cmu.edu/fall2016/comments/ajax_delete_comment";
+var archive_comment_url = "http://15462.courses.cs.cmu.edu/fall2016/comments/ajax_archive_comment";
+var add_private_comment_url = "http://15462.courses.cs.cmu.edu/fall2016/comments/ajax_add_private_comment";
+var add_instructor_comment_url = "http://15462.courses.cs.cmu.edu/fall2016/comments/ajax_add_instructor_comment";
+var add_comment_url = "http://15462.courses.cs.cmu.edu/fall2016/comments/ajax_add_comment";
+var comment_vote_url = "http://15462.courses.cs.cmu.edu/fall2016/comments/ajax_comment_vote";
+var toggle_subscribe_url = "http://15462.courses.cs.cmu.edu/fall2016/comments/ajax_toggle_subscribe";
+var prompt_students_url = "http://15462.courses.cs.cmu.edu/fall2016/comments/ajax_prompt_students";
+var keep_alive_url = "http://15462.courses.cs.cmu.edu/fall2016/keep_alive";
+</script>
+
+<script type="text/javascript" src="Assignment2_DeveloperManual_files/main.js"></script>
+<script type="text/javascript" src="Assignment2_DeveloperManual_files/comments.js"></script>
+
+<style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1px; bottom: 2px; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style><style type="text/css">.MathJax_Display {text-align: center; margin: 1em 0em; position: relative; display: block!important; text-indent: 0; max-width: none; max-height: none; min-width: 0; min-height: 0; width: 100%}
+.MathJax .merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MathJax .MJX-monospace {font-family: monospace}
+.MathJax .MJX-sans-serif {font-family: sans-serif}
+#MathJax_Tooltip {background-color: InfoBackground; color: InfoText; border: 1px solid black; box-shadow: 2px 2px 5px #AAAAAA; -webkit-box-shadow: 2px 2px 5px #AAAAAA; -moz-box-shadow: 2px 2px 5px #AAAAAA; -khtml-box-shadow: 2px 2px 5px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true'); padding: 3px 4px; z-index: 401; position: absolute; left: 0; top: 0; width: auto; height: auto; display: none}
+.MathJax {display: inline; font-style: normal; font-weight: normal; line-height: normal; font-size: 100%; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; padding: 0; margin: 0}
+.MathJax:focus, body :focus .MathJax {display: inline-table}
+.MathJax.MathJax_FullWidth {text-align: center; display: table-cell!important; width: 10000em!important}
+.MathJax img, .MathJax nobr, .MathJax a {border: 0; padding: 0; margin: 0; max-width: none; max-height: none; min-width: 0; min-height: 0; vertical-align: 0; line-height: normal; text-decoration: none}
+img.MathJax_strut {border: 0!important; padding: 0!important; margin: 0!important; vertical-align: 0!important}
+.MathJax span {display: inline; position: static; border: 0; padding: 0; margin: 0; vertical-align: 0; line-height: normal; text-decoration: none}
+.MathJax nobr {white-space: nowrap!important}
+.MathJax img {display: inline!important; float: none!important}
+.MathJax * {transition: none; -webkit-transition: none; -moz-transition: none; -ms-transition: none; -o-transition: none}
+.MathJax_Processing {visibility: hidden; position: fixed; width: 0; height: 0; overflow: hidden}
+.MathJax_Processed {display: none!important}
+.MathJax_ExBox {display: block!important; overflow: hidden; width: 1px; height: 60ex; min-height: 0; max-height: none}
+.MathJax .MathJax_EmBox {display: block!important; overflow: hidden; width: 1px; height: 60em; min-height: 0; max-height: none}
+.MathJax_LineBox {display: table!important}
+.MathJax_LineBox span {display: table-cell!important; width: 10000em!important; min-width: 0; max-width: none; padding: 0; border: 0; margin: 0}
+.MathJax .MathJax_HitBox {cursor: text; background: white; opacity: 0; filter: alpha(opacity=0)}
+.MathJax .MathJax_HitBox * {filter: none; opacity: 1; background: transparent}
+#MathJax_Tooltip * {filter: none; opacity: 1; background: transparent}
+@font-face {font-family: MathJax_Main; src: url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/woff/MathJax_Main-Regular.woff?V=2.7.0') format('woff'), url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/otf/MathJax_Main-Regular.otf?V=2.7.0') format('opentype')}
+@font-face {font-family: MathJax_Main; src: url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/woff/MathJax_Main-Bold.woff?V=2.7.0') format('woff'), url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/otf/MathJax_Main-Bold.otf?V=2.7.0') format('opentype'); font-weight: bold}
+@font-face {font-family: MathJax_Main; src: url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/woff/MathJax_Main-Italic.woff?V=2.7.0') format('woff'), url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/otf/MathJax_Main-Italic.otf?V=2.7.0') format('opentype'); font-style: italic}
+@font-face {font-family: MathJax_Math; src: url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/woff/MathJax_Math-Italic.woff?V=2.7.0') format('woff'), url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/otf/MathJax_Math-Italic.otf?V=2.7.0') format('opentype'); font-style: italic}
+@font-face {font-family: MathJax_Caligraphic; src: url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/woff/MathJax_Caligraphic-Regular.woff?V=2.7.0') format('woff'), url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/otf/MathJax_Caligraphic-Regular.otf?V=2.7.0') format('opentype')}
+@font-face {font-family: MathJax_Size1; src: url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/woff/MathJax_Size1-Regular.woff?V=2.7.0') format('woff'), url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/otf/MathJax_Size1-Regular.otf?V=2.7.0') format('opentype')}
+@font-face {font-family: MathJax_Size2; src: url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/woff/MathJax_Size2-Regular.woff?V=2.7.0') format('woff'), url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/otf/MathJax_Size2-Regular.otf?V=2.7.0') format('opentype')}
+@font-face {font-family: MathJax_Size3; src: url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/woff/MathJax_Size3-Regular.woff?V=2.7.0') format('woff'), url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/otf/MathJax_Size3-Regular.otf?V=2.7.0') format('opentype')}
+@font-face {font-family: MathJax_Size4; src: url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/woff/MathJax_Size4-Regular.woff?V=2.7.0') format('woff'), url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/otf/MathJax_Size4-Regular.otf?V=2.7.0') format('opentype')}
+.MathJax .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+<body><div id="MathJax_Message" style="display: none;"></div><div id="MathJax_Message" style="display: none;"></div><div id="MathJax_Message" style="display: none;"></div><div id="MathJax_Message" style="display: none;"></div><div style="visibility: hidden; overflow: hidden; position: absolute; top: 0px; height: 1px; width: auto; padding: 0px; border: 0px none; margin: 0px; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal;"><div id="MathJax_Hidden"></div></div><div id="MathJax_Message" style="display: none;"></div>
+
+<div id="modal_overlay"></div>
+
+<div class="main_container">
+
+<div class="topbar">
+<div class="topbar_left"><a href="http://www.cs.cmu.edu/%7E15462/">[Home]</a></div>
+<div class="topbar_left"><a href="https://15462-s17.github.io/Scotty3D/Assignment2">[Back]</a></div>
+
+
+
+<!-- <div class="topbar_left"><a href="http://15462.courses.cs.cmu.edu/fall2016/projects">[Projects]</a></div> -->
+
+
+
+
+
+</div>
+
+<div class="content_container">
+
+<!-- end of header -->
+
+
+
+
+
+
+<div class="article_container">
+
+<div class="common_title title">Scotty3D Developer Manual</div>
+
+<hr size="1">
+
+
+<div class="markdown article-content">
+<p><img src="Assignment2_DeveloperManual_files/Scotty3DLogo.svg" alt="Scotty3DLogo"></p>
+
+<h2>Overview</h2>
+
+<p>This document describes the internal data structures and algorithms 
+that comprise the Scotty3D codebase, focusing mainly on core 
+functionality (e.g., meshing and ray tracing).  Limited documentation of
+ the graphical user interface (GUI) is available via comments in the 
+source itself (though this information is not needed for assignments).</p>
+<h2>Path Tracing</h2>
+
+<p>Following the design of modern ray tracing systems, we have chosen to implement the ray tracing components of the Assignment 3 starter code in a very modular fashion.  Therefore, unlike previous assignments, your implementation will touch a number of files in the starter code.  The main structure of the code base is:</p>
+
+<ul>
+<li>The main workhorse class is <code>Pathtracer</code> defined in <i class="icon-file"> </i> <em>pathtracer.cpp</em>.  Inside the ray tracer class everything begins with the method <code>Pathtracer::raytrace_pixel()</code> in <i class="icon-file"> </i> <em>pathtracer.cpp</em>.  This method computes the value of the specified pixel in the output image.</li>
+<li>The camera is defined in the <code>Camera</code> class in <i class="icon-file"> </i> <em>camera.cpp</em>.  You will need to modify <code>Camera::generate_ray()</code> in Part 1 of the assignment to generate the camera rays that are sent out into the scene.</li>
+<li>Scene objects (e.g., triangles and spheres) are instances of the <code>Primitive</code> interface defined in <i class="icon-file"> </i> <em>static_scene/Primitive.h</em>.  You will need to implement the <code>Primitive::intersect()</code> method for both triangles and spheres.</li>
+<li>Lights implement the <code>Light</code> interface defined in  <i class="icon-file"> </i> <em>static_scene/Light.h</em>.  The initial starter code has working implementations of directional lights and constant hemispherical lights.</li>
+<li>Light energy is represented by instances of the <code>Spectrum</code> class.  While it's tempting, we encourage you to avoid thinking of spectrums as colors -- think of them as a measurement of energy over many wavelengths.  Although our current implementation only represents spectrums by red, green, and blue components (much like the RGB representations of color you've used previously in this class), this abstraction makes it possible to consider other implementations of spectrum in the future.  Spectrums can be converted into colors using the <code>Spectrum::toColor()</code> method.</li>
+<li>A major portion of the first half of the assignment concerns implementing a bounding volume hierarchy (BVH) that accelerates ray-scene intersection queries.  The implementation of the BVH will be located in <i class="icon-file"> </i> <em>bvh.cpp/.h</em>.  Note that a BVH is also an instance of the <code>Primitive</code> interface (A BVH is a scene primitive that itself contains other primitives.)</li>
+</ul>
+
+<p>Please refer to the inline comments (or the Doxygen documentation) for further details.</p>
+
+<h3>Task 1: Generating Camera Rays</h3>
+
+<p>"Camera rays" emanate from the camera and measure the amount of scene radiance that reaches a point on the camera's sensor plane.  (Given a point on the virtual sensor plane, there is a corresponding camera ray that is traced into the scene.)</p>
+
+<p>Take a look at <code>Pathtracer::raytrace_pixel()</code> in <i class="icon-file"> </i> <em>pathtracer.cpp</em>.  The job of this function is to compute the amount of energy arriving at this pixel of the image. Conveniently, we've given you a function <code>Pathtracer::trace_ray(r)</code> that provides a measurement of incoming scene radiance along the direction given by ray <code>r</code>.</p>
+
+<p>When the number of samples per pixel is 1, you should sample incoming radiance at the <strong>center of each pixel</strong> by constructing a ray <code>r</code> that begins at this sensor location and travels through the camera's pinhole.   Once you have computed this ray, then call <code>Pathtracer::trace_ray(r)</code> to get the energy deposited in the pixel.</p>
+
+<p><strong>Step 1:</strong> Given the width(<em>frameBuffer.w</em>) and height(<em>frameBuffer.h</em>) of the screen, and point in screen space, compute the corresponding coordinates of the point in normalized ([0-1]x[0x1]) screen space in <code>Pathtracer::raytrace_pixel()</code>.  Pass these coordinates to the camera via <code>Camera::generate_ray()</code> in <i class="icon-file"> </i> <em>camera.cpp</em>.</p>
+
+<p><strong>Step 2:</strong> Implement <code>Camera::generate_ray()</code>. This function should return a ray <strong>in world space</strong> that reaches the given sensor sample point.  We recommend that you compute this ray in camera space (where the camera pinhole is at the origin, the camera is looking down the -Z axis, and +Y is at the top of the screen.)  Note that the camera maintains camera-space-to-world space transform <code>c2w</code> that will be handy.</p>
+
+<p><strong>Step 3:</strong> Your implementation of <code>Pathtracer::raytrace_pixel()</code> must support supersampling (more than one sample per pixel).  The member <code>Pathtracer::ns_aa</code> in the raytracer class gives the number of samples of scene radiance your ray tracer should take per pixel (a.k.a. the number of camera rays per pixel.  Note that <code>Pathtracer::gridSampler-&gt;get_sample()</code>  provides uniformly distributed random 2D points in the [0-1]^2 box (see the implementation in <i class="icon-file"> </i> <em>sampler.cpp</em>).</p>
+
+<p><strong>Tips:</strong></p>
+
+<ul>
+<li><p>Since it'll be hard to know if you camera rays are correct until you implement primitive intersection, we recommend debugging your camera rays by checking what your implementation of <code>Camera::generate_ray()</code> does with rays at the center of the screen (0.5, 0.5) and at the corners of the image.</p></li>
+<li><p>Before starting to write any code, go through the existing code and make sure you understand the camera model we are using.</p></li>
+</ul>
+
+<p><strong>Extra credit ideas:</strong></p>
+
+<ul>
+<li>Modify the implementation of the camera to simulate a camera with a finite aperture (rather than a pinhole camera).  This will allow your ray tracer to simulate the effect of defocus blur.</li>
+<li>Write your own <code>Sampler2D</code> implementation that generates samples with improved distribution.  Some examples include:
+
+<ul>
+<li>Jittered Sampling</li>
+<li>Multi-jittered sampling</li>
+<li>N-Rooks (Latin Hypercube) sampling</li>
+<li>Sobol sequence sampling</li>
+<li>Halton sequence sampling</li>
+<li>Hammersley sequence sampling</li>
+</ul></li>
+</ul>
+
+<h3>Task 2: Intersecting Triangles and Spheres</h3>
+
+<p>Now that your ray tracer generates camera rays, you need to implement ray-primitive intersection routines for the two primitives in the starter code: triangles and spheres.  This handout will discuss the requirements of intersecting primitives in terms of triangles.</p>
+
+<p>The <code>Primitive</code> interface contains two types of intersection routines:</p>
+
+<ul>
+<li><p><code>bool Triangle::intersect(const Ray&amp; r)</code> returns true/false depending on whether ray <code>r</code> hits the triangle.</p></li>
+<li><p><code>bool Triangle::intersect(const Ray&amp; r, Intersection *isect)</code> returns true/false depending on whether ray <code>r</code> hits the triangle, but also populates an <code>Intersection</code> structure with information describing the surface at the point of the hit.</p></li>
+</ul>
+
+<p>You will need to implement both of these routines. Correctly doing so requires you to understand the fields in the <code>Ray</code> structure defined in <i class="icon-file"> </i> <em>ray.h</em>.</p>
+
+<ul>
+<li><code>Ray.o</code> represents the 3D point of origin of the ray</li>
+<li><code>Ray.d</code> represents the 3D direction of the ray (this direction will be normalized)</li>
+<li><code>Ray.min_t</code> and <code>Ray.max_t</code> correspond to the minimum and maximum points on the ray.  That is, intersections that lie outside the  <code>Ray.min_t</code> and <code>Ray.max_t</code> range <strong>should not</strong> be considered valid intersections with the primitive.</li>
+</ul>
+
+<p>There are also two additional fields in the <code>Ray</code> structure that can be helpful in accelerating your intersection computations with bounding boxes (see the <code>BBox</code> class in <i class="icon-file"> </i> <em>bbox.h</em>).  You may or may not find these precomputed values helpful in your computations.</p>
+
+<ul>
+<li><code>Ray.inv_d</code> is a vector holding (1/x, 1/d.y, 1/d.z)</li>
+<li><code>Ray.sin[3]</code> hold indicators of the sign of each component of the ray's direction.</li>
+</ul>
+
+<p>One important detail of the <code>Ray</code> structure is that <code>min_t</code> and <code>max_t</code> are <code>mutable</code> fields of the <code>Ray</code>.  This means that these fields can be modified by constant member functions such as <code>Triangle::Intersect()</code>.  When finding the first intersection of a ray and the scene, you almost certainly want to update the ray's <code>max_t</code> value after finding hits with scene geometry.  By bounding the ray as tightly as possible, your ray tracer will be able to avoid unnecessary tests with scene geometry that is known to not be able to result in a closest hit, resulting in higher performance.</p>
+
+<p><strong>Step 1: Intersecting Triangles</strong></p>
+
+<p>While faster implementations are possible, we recommend you implement ray-triangle intersection using the method described in the <a href="http://15462.courses.cs.cmu.edu/fall2015/lecture/acceleration/slide_004">lecture slides</a>. Further details of implementing this method efficiently are given in <a href="http://15462.courses.cs.cmu.edu/fall2015/article/15">these notes</a>.</p>
+
+<p>There are two important details you should be aware of about intersection:</p>
+
+<ul>
+<li><p>When finding the first-hit intersection with a triangle, you need to fill in the <code>Intersection</code> structure with details of the hit.  The structure should be initialized with:</p>
+
+<ul>
+<li><code>t</code>: the ray's t-value of the hit point</li>
+<li><code>n</code>: the normal of the surface at the hit point.  This normal should be the interpolated normal (obtained via interpolation of the per-vertex normals according to the barycentric coordinates of the hit point)</li>
+<li><code>primitive</code>: a pointer to the primitive  that was hit</li>
+<li><code>bsdf</code>: a pointer to the surface brdf at the hit point (obtained via <code>mesh-&gt;get_bsdf()</code>)</li>
+</ul></li>
+<li><p>When intersection occurs with the back-face of a triangle (the side of the triangle opposite the direction of the normal) you should <strong>return the normal of triangle pointing away from the side of the triangle that was hit.</strong></p></li>
+<li><p>If you need to distinguish back-face-hit and front-face-hit in your implementation, you might consider adding a flag(e.g. bool is_back_hit) to the 'Intersection' structure.</p></li>
+</ul>
+
+<p>Once you've successfully implemented triangle intersection, you will be able to render many of the scenes in the scenes directory (<i class="icon-folder"> </i> <em>/dae</em>)).  However, your ray tracer will be <strong>very slow!</strong></p>
+
+<p><strong>Step 2: Intersecting Spheres</strong></p>
+
+<p>Please also implement the intersection routines for the <code>Sphere</code> class in  <i class="icon-file"> </i> <em>sphere.cpp</em>.  Remember that your intersection tests should respect the ray's <code>min_t</code> and <code>max_t</code> values.</p>
+
+<h3>Task 3: Implementing a Bounding Volume Hierarchy (BVH)</h3>
+
+<p>In this task you will implement a bounding volume hierarchy that accelerates ray-scene intersection.  All of this work will be in the <code>BVHAccel</code> class in <i class="icon-file"> </i> <em>bvh.cpp</em>.</p>
+
+<p>The starter code constructs a valid BVH, but it is a trivial BVH with a single node containing all scene primitives.  A <code>BVHNode</code> has the following fields:</p>
+
+<ul>
+<li><code>BBox bb</code>: the bounding box of the node  (bounds all primitives in the subtree rooted by this node)</li>
+<li><code>int start</code>:  start index of primitives in the BVH's primitive array</li>
+<li><code>size_t range</code>:   range of index in the primitive list (number of primitives in the subtree rooted by the node)</li>
+<li><code>BVHNode* l</code>:     left child node</li>
+<li><code>BVHNode* r</code>:     right child node</li>
+</ul>
+
+<p>The <code>BVHAccel</code> class maintains an array of all primitives in the BVH (<code>primitives</code>).  The fields <code>start</code> and <code>range</code> in the <code>BVHNode</code> refer the range of contained primitives in this array.</p>
+
+<p><strong>Step 1:</strong> Your job is to construct a BVH using the <a href="http://15462.courses.cs.cmu.edu/fall2015/lecture/acceleration/slide_024">Surface Area Heuristic</a> discussed in class.  Tree construction should occur when the <code>BVHAccel</code> object is constructed.</p>
+
+<p>We have implemented a number of tools to help you debug the BVH.  Press the <kbd>V</kbd> key to enter BVH visualization mode.  This mode allows you to directly visualize a BVH as shown below.  The current BVH node is highlighted in red.  Primitives in the left and right subtrees of the current BVH node are rendered in different colors.  <strong>Press the <kbd>LEFT</kbd> or <kbd>RIGHT</kbd> keys to descend to child nodes of the mesh. Press <kbd>UP</kbd></strong> to move the parent of the current node.</p>
+
+<p><img src="http://15462.courses.cs.cmu.edu/fall2015content/misc/asst3_images/cow_bvh.png" alt="BVH Vis" /></p>
+
+<p>Another view showing the contents of a lower node in the BVH:</p>
+
+<p><img src="http://15462.courses.cs.cmu.edu/fall2015content/misc/asst3_images/cow_bvh_2.png" alt="BVH Vis" /></p>
+
+<p><strong>Step 2:</strong> Implement the ray-BVH intersection routines required by the <code>Primitive</code> interface.  You may wish to consider the node visit order optimizations we discussed in class.  Once complete, your renderer should be able to render all of the test scenes in a reasonable amount of time.</p>
+
+<h3>Task 4: Implementing Shadow Rays</h3>
+
+<p>In this task you will modify <code>Pathtracer::trace_ray()</code> to implement accurate shadows.</p>
+
+<p>Currently <code>trace_ray</code> computes the following:</p>
+
+<ul>
+<li>It computes the intersection of ray <code>r</code> with the scene.</li>
+<li>It computes the amount of light arriving at the hit point <code>hit_p</code> (the irradiance at the hit point) by integrating radiance from all scene light sources.</li>
+<li>It computes the radiance reflected from the <code>hit_p</code> in the direction of <code>-r</code>. (The amount of reflected light is based on the brdf of the surface at the hit point.)</li>
+</ul>
+
+<p>Shadows occur when another scene object blocks light emitted from scene light sources towards the hit point (<code>hit_p</code>).  Fortunately, determining whether or not a ray of light from a light source to the hit point is occluded by another object is easy given a working ray tracer (which you have at this point!).  <strong>You simply want to know whether a ray originating from the hit point (<code>p_hit</code>), and traveling towards the light source (<code>dir_to_light</code>) hits any scene geometry before reaching the light (note, the light's distance from the hit point is given by <code>dist_to_light</code>).</strong></p>
+
+<p>Your job is to implement the logic needed to compute whether <code>hit_p</code> is in shadow with respect to the current light source sample.  Below are a few tips:</p>
+
+<ul>
+<li>A common ray tracing pitfall is for the "shadow ray" shot into the scene to accidentally hit the same triangle as <code>r</code> (the surface is erroneously determined to be occluded because the shadow ray is determined to hit the surface!).  We recommend that you make sure the origin of the shadow ray is offset from the surface to avoid these erroneous "self-intersections".  For example, <code>o</code> = <code>p_hit + epsilon * dir_to_light</code>  (note: <code>EPS_D</code> is defined for this purpose).</li>
+<li>You will find it useful to debug your shadow code using the <code>DirectionalLight</code> since it produces hard shadows that are easy to reason about.</li>
+</ul>
+
+<p>At this point you should be able to render very striking images. For example, here is the Stanford Dragon model rendered with both a directional light and a hemispherical light.</p>
+
+<p><img src="http://15462.courses.cs.cmu.edu/fall2015content/misc/asst3_images/shadow_directional.png" alt="Shadow directional" /></p>
+
+<p><img src="http://15462.courses.cs.cmu.edu/fall2015content/misc/asst3_images/shadow_hemisphere.png" alt="Shadow directional" /></p>
+
+<h3>Task 5: Adding Path Tracing</h3>
+
+<p><strong>A few notes before getting started:</strong></p>
+
+<p>The new release of the starter code for tasks 5-7 makes a few changes and improvements to the original starter code of the assignment:</p>
+
+<ul>
+<li><p>The <code>BRDF</code> class has been renamed <code>BSDF</code> (for "bidirectional scattering distribution function") to indicate that the class is now responsible for computing both light that is reflected from the surface, but also light that is refracted as it is transmitted through the surface.  Implementations reside in <i class="icon-file"> </i> <em>bsdf.cpp/h</em>.</p></li>
+<li><p>Rather than use a single hardcoded light source in your <code>Pathtracer::trace_ray()</code> lights are now defined as part of the scene description file.</p></li>
+</ul>
+
+<p>You should change your implementation of the reflectance estimate due to direct lighting in <code>Pathtracer::trace_ray()</code>  to iterate over the list of scene light sources using the following code:</p>
+
+<p><code>for (SceneLight* light : scene-&gt;lights) {
+    /// do work here...
+}</code></p>
+
+<ul>
+<li><code>PathTracer::raytrace_pixel(size_t x, size_t y)</code> now returns a <code>Spectrum</code> for the pixel (it doesn't directly update the output image).  The update is now handled in <code>PathTracer::raytrace_tile()</code> and is included in the starter code.</li>
+</ul>
+
+<hr />
+
+<p>In this task you will modify your ray tracer to add support for indirect illumination.  We wish for you to implement the path tracing algorithm that terminates ray paths using Russian Roulette, as discussed in class.  Recommend that you restructure the code in <code>Pathtracer::trace_ray()</code> as follows:</p>
+
+<p>```
+Pathtracer::trace_ray() {
+  if (surface hit) {
+       //
+       // compute reflectance due to direct lighting only
+       //
+       for each light:
+          accumulate reflectance contribution due to light</p>
+
+<pre><code>   //
+   // add reflectance due to indirect illumination
+   //
+   randomly select a new ray direction (it may be
+   reflection or transmittence ray depending on
+   surface type -- see BSDF::sample_f()
+
+   potentially kill path (using Russian roulette)
+
+   evaluate weighted reflectance contribution due
+   to light from this direction
+</code></pre>
+
+<p>}
+}
+```</p>
+
+<p>As a warmup for the next task, implement <code>BSDF::sample_f</code> for diffuse surfaces (<code>DiffuseBSDF:sample_f</code>). The implementation of <code>DiffuseBSDF::f</code> is already provided to you. After correctly implementing diffuse BSDF and path tracing, your renderer should be able to make a beautifully lit picture of the Cornell Box with:</p>
+
+<p><code>./scotty3d -s 1024 -m 2 -t 8 ../dae/sky/CBspheres_lambertian.dae</code>
+ <img src="http://15462.courses.cs.cmu.edu/fall2015content/misc/asst3_images/cornell_lambertian.png" alt="Cornell Box Lambertian" /></p>
+
+<p>Note the time-quality tradeoff here. With these commandline arguments, your path tracer will be running with 8 worker threads at a sample rate of 256 camera rays per pixel, with a max ray depth of 4. This will produce an image with relatively high quality but will take quite some time to render. Rendering a high quality image will take a very long time as indicated by the image sequence below, so start testing your path tracer early!</p>
+
+<p><img src="http://15462.courses.cs.cmu.edu/fall2015content/misc/asst3_images/spheres.png" alt="Time-Quality Tradeoff " /></p>
+
+<p>Here are a few tips:</p>
+
+<ul>
+<li><p>The termination probability of paths can be determined based on the <a href="http://15462.courses.cs.cmu.edu/fall2015/lecture/globalillum/slide_044">overall throughput</a> of the path (you'll likely need to add a field to the <code>Ray</code> structure to implement this) or based on the value of the BSDF given <code>wo</code> and <code>wi</code> in the current step.  Keep in mind that delta function BRDFs can take on values greater than one, so clamping termination probabilities derived from BRDF values to 1 is wise.</p></li>
+<li><p>To convert a <code>Spectrum</code> to a termination probability, we recommend you use the luminance (overall brightness) of the Spectrum, which is available via <code>Spectrum::illum()</code></p></li>
+<li><p>We've given you some <a href="http://15462.courses.cs.cmu.edu/fall2015/lecture/globalillum/slide_047">pretty good notes</a> on how to do this part of the assignment, but it can still be tricky to get correct.</p></li>
+</ul>
+
+<h3>Task 6: Adding New Materials</h3>
+
+<p>Now that you have implemented the ability to sample more complex light paths, it's finally time to add support for more types of materials (other than the fully Lambertian material provided to you in the starter code).  In this task you will add support for two types of materials: a perfect mirror and glass (a material featuring both specular reflection and transmittance).</p>
+
+<p>To get started take a look at the <code>BSDF</code> interface in <i class="icon-file"> </i> <em>bsdf.cpp</em>.  There are a number of key methods you should understand:</p>
+
+<ul>
+<li><code>BSDF::f(wo,wi)</code> evaluates the distribution function for a given pair of directions.</li>
+<li><code>BSDF::sample_f(const Vector3D&amp; wo, Vector3D* wi, float* pdf)</code> generates a random sample <code>wo</code> (which may be a reflection direction or a refracted transmitted light direction). The method returns the value of the distribution function for the pair of directions, and the pdf for the selected sample <code>wi</code>.</li>
+</ul>
+
+<p>There are also two helper functions in the BSDF class that you will need to implement:</p>
+
+<ul>
+<li><p><code>BSDF::reflect(w0, ...)</code> returns a direction <code>wi</code> that is the <strong>perfect specular reflection direction</strong> corresponding to <code>wi</code> (reflection of w0 about the normal, which in the surface coordinate space is [0,0,1]).  More detail about specular reflection <a href="http://15462.courses.cs.cmu.edu/fall2015/lecture/reflection/slide_028">is here</a>.</p></li>
+<li><p><code>BSDF::refract(w0, ...)</code> returns the ray that results from refracting the ray <code>w0</code>  about the surface according to <a href="http://15462.courses.cs.cmu.edu/fall2015/lecture/reflection/slide_032">Snell's Law</a>.  The surface's index of refraction is given by the argument <code>ior</code>.  Your implementation should assume that if the ray <code>w0</code> is <strong>entering the surface</strong> (that is, if <code>cos(w0,N) &gt; 0</code>) then the ray is currently in vacuum (index of refraction = 1.0).  If <code>cos(w0,N) &lt; 0</code> then your code should assume the ray is leaving the surface and entering vacuum. <strong>In the case of total internal reflection, the method should return <code>false</code>.</strong></p></li>
+</ul>
+
+<p><strong>What you need to do:</strong></p>
+
+<ol>
+<li><p>Implement the class <code>MirrorBSDF</code> which represents a  material with perfect specular reflection (a perfect mirror).  You should Implement <code>MirrorBSDF::f()</code>, <code>MirrorBSFD::sample_f()</code>, and <code>BSDF::reflect()</code>.  <strong>(Hint: what should the pdf computed by <code>MirrorBSFD::sample_f()</code> be?  What should the reflectance function f() be?)</strong></p></li>
+<li><p>Implement the class  <code>GlassBSDF</code> which is a glass-like material that both reflects light and transmit light.  As discussed <a href="http://15462.courses.cs.cmu.edu/fall2015/lecture/reflection/slide_035">in class</a> the fraction of light that is reflected and transmitted through glass is given by the <strong>dielectric Fresnel equations</strong>, which are <a href="http://15462.courses.cs.cmu.edu/fall2015/article/15">documented in detail here</a>.  Specifically your implementation should:</p>
+
+<ul>
+<li><code>Implement BSDF::refract()</code> to add support for refracted ray paths.</li>
+<li>Use the Fresnel equations to compute the fraction of reflected light and the fraction of transmitted light. Your implementation of</li>
+<li>Implement <code>GlassBSDF::sample_f()</code>.  Your implementation should use the Fresnel equations to compute the fraction of reflected light and the fraction of transmitted light.  The returned ray sample should be either a reflection ray or a refracted ray, with the probability of which type of ray to use for the current path proportional to the Fresnel reflectance. (e.g., If the Fresnel reflectance is 0.9, then you should generate a reflection ray 90% of the time. <strong>What should the pdf be in this case?</strong>)</li>
+<li>You should read <a href="http://15462.courses.cs.cmu.edu/fall2015/article/15">the provided notes</a> on the Fresnel equations as well as on how to compute a transmittance BRDF.</li>
+</ul></li>
+</ol>
+
+<p>When you are done, you will be able to render images like these:</p>
+
+<p><img src="http://15462.courses.cs.cmu.edu/fall2015content/misc/asst3_images/cornell_classic.png" alt="Cornell box spheres 256" /></p>
+
+<h3>Task 7: Infinite Environment Lighting</h3>
+
+<p>The final task of this assignment will be to implement a new type of light source: an infinite environment light.  An environment light is a light that supplies incident radiance (really, the light intensity dPhi/dOmega) from all directions on the sphere.  The source is thought to be "infinitely far away", and is representative of realistic lighting environments in the real world: as a result, rendering using environment lighting can be quite striking.</p>
+
+<p>The intensity of incoming light from each direction is defined by a texture map parameterized by phi and theta, as shown below.</p>
+
+<p><img src="http://15462.courses.cs.cmu.edu/fall2015content/misc/asst3_images/envmap_figure.jpg" alt="Environment map" /></p>
+
+<p>In this task you need to implement the <code>EnvironmentLight::sample_L()</code> method in <i class="icon-file"> </i> <em>static_scene/environment_light.cpp</em>.  You'll start with uniform direction sampling to get things working, and then move to a more advanced implementation that uses <strong>importance sampling</strong> to significantly reduce variance in rendered images.</p>
+
+<p><strong>Step one: uniform sampling</strong></p>
+
+<p>To get things working, your first implementation of <code>EnvironmentLight::sample_L()</code> will be quite simple.  You should generate a random direction on the sphere (<strong>with uniform (1/4pi) probability with respect to solid angle</strong>), convert this direction to coordinates (phi, theta) and then look up the appropriate radiance value in the texture map using <strong>bilinear interpolation</strong> (note: we recommend you begin with bilinear interpolation to keep things simple.)</p>
+
+<p>You an designate rendering to use a particular environment map using the <code>-e</code> commandline parameter:  (e.g., <code>-e ../exr/grace.exr</code> )</p>
+
+<p>Since high dynamic range environment maps can be large files, we have not included them in the starter code repo.  You can download a set of environment maps <a href="http://15462.courses.cs.cmu.edu/fall2015content/misc/asst3_images/asst3_exr_archive.zip">from this link</a>.</p>
+
+<p><strong>Tips:</strong></p>
+
+<ul>
+<li>You must write your own code to uniformly sample the sphere.</li>
+<li><code>envMap-&gt;data</code> contains the pixels of the environment map</li>
+<li>The size of the environment texture is given by <code>envMap-&gt;w</code> and <code>envMap-&gt;h</code>.</li>
+</ul>
+
+<p><strong>Step two: importance sampling the environment map</strong></p>
+
+<p>Much like light in the real world, most of the energy provided by an environment light source is concentrated in the directions toward bright light sources. <strong>Therefore, it makes sense to bias selection of sampled directions towards the directions for which incoming radiance is the greatest.</strong>  In this final task you will implement an importance sampling scheme for environment lights.  For environment lights with large variation in incoming light intensities, good importance sampling will significantly improve the quality of renderings.</p>
+
+<p>The basic idea is that you will assign a probability to each pixel in the environment map based on the total flux passing through the solid angle it represents.  We've written up a <a href="http://15462.courses.cs.cmu.edu/fall2015/article/15">detailed set of notes for you here</a> (see "Task 7 notes").</p>
+
+<p><strong>Here are a few tips:</strong></p>
+
+<ul>
+<li>When computing areas corresponding to a pixel, use the value of theta at the pixel centers.</li>
+<li>We recommend precomputing the joint distributions p(phi, theta) and marginal distributions p(theta) in the constructor of <code>EnvironmentLight</code> and storing the resulting values in fields of the class.</li>
+<li><code>Spectrum::illum()</code> returns the luminance (brightness) of a Spectrum.  The probability of a pixel should be proportional to the product of its luminance and the solid angle it subtends.</li>
+<li><code>std::binary_search</code> is your friend. Documentation <a href="http://en.cppreference.com/w/cpp/algorithm/binary_search">is here</a>.</li>
+</ul></div>
+
+
+
+
+</div>
+
+<hr size="1">
+
+<div class="footer">
+     Copyright 2016 Carnegie Mellon University
+</div>
+
+
+</div>  <!-- end of content_container (defined in header.php) -->
+</div>  <!-- end main_container (defined in header.php) -->
+
+
+
+
+
+<div style="position: absolute; width: 0px; height: 0px; overflow: hidden; padding: 0px; border: 0px none; margin: 0px;"><div id="MathJax_Font_Test" style="position: absolute; visibility: hidden; top: 0px; left: 0px; width: auto; padding: 0px; border: 0px none; margin: 0px; white-space: nowrap; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; font-size: 40px; font-weight: normal; font-style: normal; font-size-adjust: none; font-family: MathJax_Size2,sans-serif;"></div></div></body></html>

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html class="wf-opensans-i3-active wf-opensans-i4-active wf-opensans-i6-active wf-opensans-i7-active wf-opensans-i8-active wf-opensans-n3-active wf-opensans-n4-active wf-opensans-n6-active wf-opensans-n7-active wf-opensans-n8-active wf-active wf-opensanscondensed-i3-active wf-opensanscondensed-n3-active wf-opensanscondensed-n7-active"><head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<link rel="icon" href="http://15462.courses.cs.cmu.edu/fall2016/assets/images/favicon/dragon.png" type="image/png">
+<title>Assignment 3 : Computer Graphics : 15-462/662 Spring 2017</title>
+
+<link rel="stylesheet" href="Assignment2_files/l_002.css" media="all"><link rel="stylesheet" href="Assignment2_files/l_004.css" media="all"><link rel="stylesheet" href="Assignment2_files/l_006.css" media="all"><script src="Assignment2_files/open-sansn3i3n4i4n6i6n7i7n8i8.js"></script>
+<link rel="stylesheet" href="Assignment2_files/l.css" media="all"><link rel="stylesheet" href="Assignment2_files/l_003.css" media="all"><link rel="stylesheet" href="Assignment2_files/l_005.css" media="all"><script src="Assignment2_files/open-sans-condensedn3i3n7.js"></script>
+
+<script src="Assignment2_files/jquery.js"></script>
+<script src="Assignment2_files/jquery_002.js"></script>
+<script src="Assignment2_files/jquery_003.js"></script>
+
+<script src="Assignment2_files/codemirror.js"></script>
+<script src="Assignment2_files/markdown.js"></script>
+
+<script type="text/javascript" src="Assignment2_files/MathJax.js">
+</script><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1px; bottom: 2px; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1px; bottom: 2px; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style>
+
+<script type="text/x-mathjax-config;executed=true">
+MathJax.Hub.Config({
+  skipStartupTypeset: true,
+  showProcessingMessages: false,
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});
+</script>
+
+
+<link rel="stylesheet" type="text/css" href="Assignment2_files/codemirror.css">
+
+<script src="Assignment2_files/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="Assignment2_files/prettify.css">
+
+<!-- NOTE(kayvonf): place at end to override 3rd party tools -->
+<link rel="stylesheet" type="text/css" href="Assignment2_files/main.css">
+
+<script type="text/javascript">
+var edit_comment_url = "http://15462.courses.cs.cmu.edu/fall2016/comments/ajax_edit_comment";
+var delete_comment_url = "http://15462.courses.cs.cmu.edu/fall2016/comments/ajax_delete_comment";
+var archive_comment_url = "http://15462.courses.cs.cmu.edu/fall2016/comments/ajax_archive_comment";
+var add_private_comment_url = "http://15462.courses.cs.cmu.edu/fall2016/comments/ajax_add_private_comment";
+var add_instructor_comment_url = "http://15462.courses.cs.cmu.edu/fall2016/comments/ajax_add_instructor_comment";
+var add_comment_url = "http://15462.courses.cs.cmu.edu/fall2016/comments/ajax_add_comment";
+var comment_vote_url = "http://15462.courses.cs.cmu.edu/fall2016/comments/ajax_comment_vote";
+var toggle_subscribe_url = "http://15462.courses.cs.cmu.edu/fall2016/comments/ajax_toggle_subscribe";
+var prompt_students_url = "http://15462.courses.cs.cmu.edu/fall2016/comments/ajax_prompt_students";
+var keep_alive_url = "http://15462.courses.cs.cmu.edu/fall2016/keep_alive";
+</script>
+
+<script type="text/javascript" src="Assignment2_files/main.js"></script>
+<script type="text/javascript" src="Assignment2_files/comments.js"></script>
+
+<style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1px; bottom: 2px; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style><style type="text/css">.MathJax_Display {text-align: center; margin: 1em 0em; position: relative; display: block!important; text-indent: 0; max-width: none; max-height: none; min-width: 0; min-height: 0; width: 100%}
+.MathJax .merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MathJax .MJX-monospace {font-family: monospace}
+.MathJax .MJX-sans-serif {font-family: sans-serif}
+#MathJax_Tooltip {background-color: InfoBackground; color: InfoText; border: 1px solid black; box-shadow: 2px 2px 5px #AAAAAA; -webkit-box-shadow: 2px 2px 5px #AAAAAA; -moz-box-shadow: 2px 2px 5px #AAAAAA; -khtml-box-shadow: 2px 2px 5px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true'); padding: 3px 4px; z-index: 401; position: absolute; left: 0; top: 0; width: auto; height: auto; display: none}
+.MathJax {display: inline; font-style: normal; font-weight: normal; line-height: normal; font-size: 100%; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; padding: 0; margin: 0}
+.MathJax:focus, body :focus .MathJax {display: inline-table}
+.MathJax.MathJax_FullWidth {text-align: center; display: table-cell!important; width: 10000em!important}
+.MathJax img, .MathJax nobr, .MathJax a {border: 0; padding: 0; margin: 0; max-width: none; max-height: none; min-width: 0; min-height: 0; vertical-align: 0; line-height: normal; text-decoration: none}
+img.MathJax_strut {border: 0!important; padding: 0!important; margin: 0!important; vertical-align: 0!important}
+.MathJax span {display: inline; position: static; border: 0; padding: 0; margin: 0; vertical-align: 0; line-height: normal; text-decoration: none}
+.MathJax nobr {white-space: nowrap!important}
+.MathJax img {display: inline!important; float: none!important}
+.MathJax * {transition: none; -webkit-transition: none; -moz-transition: none; -ms-transition: none; -o-transition: none}
+.MathJax_Processing {visibility: hidden; position: fixed; width: 0; height: 0; overflow: hidden}
+.MathJax_Processed {display: none!important}
+.MathJax_ExBox {display: block!important; overflow: hidden; width: 1px; height: 60ex; min-height: 0; max-height: none}
+.MathJax .MathJax_EmBox {display: block!important; overflow: hidden; width: 1px; height: 60em; min-height: 0; max-height: none}
+.MathJax_LineBox {display: table!important}
+.MathJax_LineBox span {display: table-cell!important; width: 10000em!important; min-width: 0; max-width: none; padding: 0; border: 0; margin: 0}
+.MathJax .MathJax_HitBox {cursor: text; background: white; opacity: 0; filter: alpha(opacity=0)}
+.MathJax .MathJax_HitBox * {filter: none; opacity: 1; background: transparent}
+#MathJax_Tooltip * {filter: none; opacity: 1; background: transparent}
+@font-face {font-family: MathJax_Main; src: url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/woff/MathJax_Main-Regular.woff?V=2.7.0') format('woff'), url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/otf/MathJax_Main-Regular.otf?V=2.7.0') format('opentype')}
+@font-face {font-family: MathJax_Main; src: url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/woff/MathJax_Main-Bold.woff?V=2.7.0') format('woff'), url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/otf/MathJax_Main-Bold.otf?V=2.7.0') format('opentype'); font-weight: bold}
+@font-face {font-family: MathJax_Main; src: url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/woff/MathJax_Main-Italic.woff?V=2.7.0') format('woff'), url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/otf/MathJax_Main-Italic.otf?V=2.7.0') format('opentype'); font-style: italic}
+@font-face {font-family: MathJax_Math; src: url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/woff/MathJax_Math-Italic.woff?V=2.7.0') format('woff'), url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/otf/MathJax_Math-Italic.otf?V=2.7.0') format('opentype'); font-style: italic}
+@font-face {font-family: MathJax_Caligraphic; src: url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/woff/MathJax_Caligraphic-Regular.woff?V=2.7.0') format('woff'), url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/otf/MathJax_Caligraphic-Regular.otf?V=2.7.0') format('opentype')}
+@font-face {font-family: MathJax_Size1; src: url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/woff/MathJax_Size1-Regular.woff?V=2.7.0') format('woff'), url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/otf/MathJax_Size1-Regular.otf?V=2.7.0') format('opentype')}
+@font-face {font-family: MathJax_Size2; src: url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/woff/MathJax_Size2-Regular.woff?V=2.7.0') format('woff'), url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/otf/MathJax_Size2-Regular.otf?V=2.7.0') format('opentype')}
+@font-face {font-family: MathJax_Size3; src: url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/woff/MathJax_Size3-Regular.woff?V=2.7.0') format('woff'), url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/otf/MathJax_Size3-Regular.otf?V=2.7.0') format('opentype')}
+@font-face {font-family: MathJax_Size4; src: url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/woff/MathJax_Size4-Regular.woff?V=2.7.0') format('woff'), url('http://cdn.mathjax.org/mathjax/2.7-latest/fonts/HTML-CSS/TeX/otf/MathJax_Size4-Regular.otf?V=2.7.0') format('opentype')}
+.MathJax .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+<body><div id="MathJax_Message" style="display: none;"></div><div id="MathJax_Message" style="display: none;"></div><div style="visibility: hidden; overflow: hidden; position: absolute; top: 0px; height: 1px; width: auto; padding: 0px; border: 0px none; margin: 0px; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal;"><div id="MathJax_Hidden"></div></div><div id="MathJax_Message" style="display: none;"></div>
+
+<div id="modal_overlay"></div>
+
+<div class="main_container">
+
+<div class="topbar">
+<div class="topbar_left"><a href="https://www.cs.cmu.edu/%7E15462/">[Home]</a>
+</div>
+
+
+
+
+<!-- <div class="topbar_left"><a href="http://15462.courses.cs.cmu.edu/fall2016/projects">[Projects]</a></div> -->
+
+
+
+<div class="topbar_right">
+
+
+
+</div>
+
+</div>
+
+<div class="content_container">
+
+<!-- end of header -->
+
+
+
+
+
+
+<div class="article_container">
+
+<div class="common_title title">Assignment 3</div>
+
+<hr size="1">
+
+
+<div class="markdown article-content">
+<p><img src="http://15462.courses.cs.cmu.edu/fall2016content/Scotty3D/images/Scotty3DLogo.svg" alt="Scotty3DLogo" /></p>
+
+<h3>Overview</h3>
+
+<p>Your current assignment focuses on the PathTracer component of Scotty3D.</p>
+
+<h3>Important Information</h3>
+
+<p><strong>Due Date:</strong> April 1st, 2017 11:59pm</p>
+
+<p>You will need three things to complete this assignment:</p>
+
+<ol>
+<li><p>The <a href="https://github.com/15462-s17/Scotty3D">skeleton code for Scotty3D</a>---the specific files you will modify are specified in Developer Manual with individual tasks. This is the same code base as you used for A2, but with some changes made for A3. You will modify different files for A3.</p></li>
+<li><p>The <a href="https://15462-s17.github.io/Scotty3D/UserGuide.html">User Guide</a> explains how to <em>use</em> the software to an end-user.</p></li>
+<li><p>The <a href="https://15462-s17.github.io/Scotty3D/Assignment3_DeveloperManual.html">Developer Manual</a> explains low-level details and internals of the code to a software developer.</p></li>
+</ol>
+
+<p>Note that the User Guide is <strong>not</strong> the Assignment Writeup. The User Guide contains only instructions on how to use the software, and serves as a high-level specification of <em>what the software should do</em>. The Developer Guide contains information about the internals of the code, i.e., <em>how the software works</em>.  This division is quite common in software development: there is a <strong>design specification</strong> or "design spec", and an <strong>implementation</strong> that implements that spec.  Also, as in the real world, the design spec does <em>not</em> necessarily specify every tiny detail of how the software should behave!  Some behaviors may be undefined, and some of these details are left up to the party who implements the specification.  A good example you have already seen is OpenGL, which defines some important rules about how rasterization should behave, but is not a "pixel-exact" specification.  In other words, two different OpenGL implementations from two different vendors (Intel and NVIDIA, say) may produce images that differ by a number of pixels.  Likewise, in this assignment, your implementation may differ from the implementation of your classmates in terms of the exact values it produces, or the particular collection of corner-cases it handles.  However, as a developer you should strive to provide a solution that meets a few fundamental criteria:</p>
+
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Fault_tolerance">Failing gracefully</a> is preferable to failing utterly---for instance, if a rare corner case is difficult to handle, it is far better to simply refuse to perform the operation than to let the program crash!</li>
+<li>Your implementation should follow the <a href="https://en.wikipedia.org/wiki/Principle_of_least_astonishment">principle of least surprise</a>.  A user should be able to expect that things behave more or less as they are described in the User Guide.</li>
+<li>You should not use an algorithm whose performance is <a href="https://en.wikipedia.org/wiki/Asymptotic_computational_complexity">asymptotically worse</a> just because it makes your code easier to write (for instance, using <a href="https://en.wikipedia.org/wiki/Bubble_sort">bubble sort</a> rather than <a href="https://en.wikipedia.org/wiki/Merge_sort">merge sort</a> on large data sets).</li>
+<li>That being said, when it comes to performance, <a href="https://en.wikipedia.org/wiki/Program_optimization#When_to_optimize">premature optimization is the root of all evil!</a>  The only way to know whether an optimization matters is to <a href="https://en.wikipedia.org/wiki/Profiling_(computer_programming)">measure performance</a>, and understand <a href="https://en.wikipedia.org/wiki/Program_optimization#Bottlenecks">bottlenecks</a>.</li>
+<li>Finally, you should take <a href="http://thenextweb.com/apple/2011/10/24/steve-jobs-obsession-with-the-quality-of-the-things-unseen/#gref">pride in your craft</a>.  Beautiful things just tend to work better.</li>
+</ul>
+
+<p>Just to reiterate the main point above:</p>
+
+<p><strong>As in real-world software development, we will not specify every little detail about how methods in this assignment should work!</strong></p>
+
+<p>If you encounter a tough corner case (e.g., "how should edge flip behave for a tetrahedron"), we want you to <em>think about what a good <strong>design choice</strong> might be</em>, and implement it to the best of your ability.  This activity is part of becoming a world-class developer.  However, we are more than happy to discuss good design choices with you, and you should also feel free to discuss these choices with your classmates.  Practically speaking, it is ok for routines to simply exit if they encounter a rare and difficult corner case---as long as it does not interfere with successful operation of the program (i.e., if it does not crash or yield bizarre behavior).  Your main goal here above all else should be to develop <em>effective tool for modeling, rendering, and animation</em>.</p>
+
+<h3>Getting started</h3>
+
+<p>The basic code skeleton will be distrbuted via <a href="https://en.wikipedia.org/wiki/Git">Git</a>.  This skeleton includes basic functionality (e.g., file loading/saving, a graphical user interface, etc.), but the core software features have been removed.  You can find the repository for this assignment at <a href="https://github.com/15462-f16/Scotty3D">https://github.com/15462-f16/Scotty3D</a>. If you are unfamiliar with git, run</p>
+
+<p><code>$ git pull</code></p>
+
+<p>to get the updated code base, or, if you prefer, run</p>
+
+<p><code>$ git clone https://github.com/15462-f16/Scotty3D.git</code></p>
+
+<p>to start with a new copy. You will have to manually merge your code for A2 if you do <code>git clone</code>. If you are unfamiliar with git, backup your work.</p>
+
+<h3>Build Instructions</h3>
+
+<p>In order to ease the process of running on different platforms, we will be using <a href="http://www.cmake.org" title="CMake Homepage">CMake</a> for our assignments. You will need a CMake installation of version 2.8+ to build the code for this assignment. The GHC 5xxx cluster machines have all the packages required to build the project. It should also be relatively easy to build the assignment and work locally on your OSX or Linux. Building on Windows is currently not supported.</p>
+
+<p>If you are working on OS X and do not have CMake installed, we recommend installing it through <a href="https://www.macports.org/">Macports</a>:</p>
+
+<p><code>sudo port install cmake</code></p>
+
+<p>Or <a href="http://brew.sh/">Homebrew</a>:</p>
+
+<p><code>brew install cmake</code></p>
+
+<p>To build your code for this assignment:</p>
+
+<p>Create a directory to build your code:</p>
+
+<p><code>$ cd Scotty3D &amp;&amp; mkdir build &amp;&amp; cd build</code></p>
+
+<p>Run CMake to generate makefile:</p>
+
+<p><code>$ cmake ..</code></p>
+
+<p>Build your code:</p>
+
+<p><code>$ make</code></p>
+
+<p>Install the executable:</p>
+
+<p><code>$ make install</code></p>
+
+<h4>Windows Build Instructions</h4>
+
+<p>We have a beta build support for Windows systems. You need to install the latest version of <a href="http://www.cmake.org" title="CMake Homepage">CMake</a> and install Visual Studio 2015 from <a href="https://www.cmu.edu/computing/software/all/dreamspark/">CMU Dreamspark web store</a>. After installing these programs, you can run <code>runcmake_win.bat</code> by double-clicking on it. This should create a <code>build</code> directory with a Visual Studio solution file in it named <code>Scotty3D.sln</code>. You can double-click this file to open the solution in Visual Studio.</p>
+
+<p>If you plan on using Visual Studio to debug your program, you can change <code>scotty3D</code> project in the Solution Explorer as the startup project by right-clicking on it and selecting <code>Set as StartUp Project</code>. You can also set the commandline arguments to the project by right-clicking <code>scotty3D</code> project again, selecting <code>Properties</code>, going into the <code>Debugging</code> tab, and setting the value in <code>Command Arguments</code>. If you want to run the program with the default cube file, you can set this command argument to <code>../../cube.dae</code>. After setting all these, you can hit F5 to build your program and run it with the debugger.</p>
+
+<p>If you feel that your program is running slowly, you can also change the build mode to <code>Release</code> from <code>Debug</code> by clicking the Solution Configurations drop down menu on the top menu bar. Note that you will have to set <code>Command Arguments</code> again if you change the build mode.</p>
+
+<h3>Using the Scotty3D App</h3>
+
+<p>When you have successfully built your code, you will get an executable named <strong>scotty3d</strong>. The <strong>scotty3d</strong> executable takes exactly one argument from the command line. You may load a single COLLADA file by specifying its path.  Initially we have provided only a simple cube mesh <i class="icon-file"> </i><em>cube.dae</em>, but as you develop the software you will be able to create (and save) more and more interesting surfaces.  You can load the cube from the build directory by running</p>
+
+<p><code>./scotty3d ../cube.dae</code></p>
+
+<p>See more in the User Guide on <a href="https://github.com/15462-f16/Scotty3D/blob/master/Scotty3D_UserGuide.md">Github, Scotty3d UserGuide</a>.</p>
+
+<p>Note that since most of the features of Scotty3D have not yet been implemented, you may encounter occasional unexpected behavior (even crashes!).  Your goal is to replace these blank routines with stable implementations.</p>
+
+<h3>More on <code>.dae</code> files</h3>
+
+<p>For this assignment, lighting is important. The <code>cube.dae</code> file does not have lights. The application by default adopts ambient light for <code>.dae</code> files with no lights.</p>
+
+<p>More <code>.dae</code> files coming soon...</p>
+
+<h3>Handin Instructions</h3>
+
+<p>Your handin directory is on AFS under:</p>
+
+<p><code>/afs/cs/academic/class/15462-s17-users/ANDREWID/asst3/</code></p>
+
+<p>Note that you may need to create the <code>asst3</code> directory yourself. All your files should be placed there. Please make sure you have a directory and are able to write to it well before the deadline; we are not responsible if you wait until 10 minutes before the deadline and run into trouble. Also, you may need to run <code>aklog cs.cmu.edu</code> after you login in order to read from/write to your submission directory.</p>
+
+<p>You should submit all files needed to build your project, this includes:</p>
+
+<ul>
+<li>The <code>src</code> folder with all your source files</li>
+</ul>
+
+<p>Please do not include:</p>
+
+<ul>
+<li>The <code>build</code> folder</li>
+<li>Executables</li>
+<li>Any additional binary or intermediate files generated in the build process.</li>
+</ul>
+
+<p>You should include a <code>README</code> file &#40;plaintext, MarkDown, or PDF&#41; indicating which features you chose to implement, including any features implemented for extra credit.  You should also briefly state any other issues the grader should be aware of.</p>
+
+<p>Do not add levels of indirection when submitting. And please use the same arrangement as the handout. We will enter your handin directory, and run:</p>
+
+<p><code>mkdir build &amp;&amp; cd build &amp;&amp; cmake .. &amp;&amp; make</code></p>
+
+<p>and your code should build correctly. The code must compile and run on the GHC 5xxx cluster machines. Be sure to check to make sure you submit all files and that your code builds correctly.</p>
+
+<h3>Evaluation</h3>
+
+<p>Your code must run on the GHC 5xxxx cluster machines as we will grade on those machines. Do not wait until the submission deadline to test your code on the cluster machines. Keep in mind that there is no perfect way to run on arbitrary platforms. If you experience trouble building on your computer, while the staff may be able to help, but the GHC 5xxx machines will always work and we recommend you work on them.</p>
+
+<p>The assignment consists of a total of 100 pts. The point breakdown is as follows:</p>
+
+<ul>
+<li>Task 1 Generating Camera Rays:  5</li>
+<li>Task 2 Intersecting Triangles and Spheres:  15</li>
+<li>Task 3 Implementing a Bounding Volume Hierarchy (BVH):  20</li>
+<li>Task 4 Implementing Shadow Rays:  10</li>
+<li>Task 5 Adding Path Tracing:  15</li>
+<li>Task 6 Adding New Materials:  20</li>
+<li>Task 7 Infinite Environment Lighting:  15</li>
+</ul>
+
+<p>To avoid complication, we will primarily run your code on meshes that were given to you and/or the ones used in Developer Manual.</p></div>
+
+
+
+
+</div>
+
+<hr size="1">
+
+<div class="footer">
+     Copyright 2016 Carnegie Mellon University
+</div>
+
+
+</div>  <!-- end of content_container (defined in header.php) -->
+</div>  <!-- end main_container (defined in header.php) -->
+
+
+
+
+
+<div style="position: absolute; width: 0px; height: 0px; overflow: hidden; padding: 0px; border: 0px none; margin: 0px;"><div id="MathJax_Font_Test" style="position: absolute; visibility: hidden; top: 0px; left: 0px; width: auto; padding: 0px; border: 0px none; margin: 0px; white-space: nowrap; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; font-size: 40px; font-weight: normal; font-style: normal; font-size-adjust: none; font-family: MathJax_Main,sans-serif;"></div></div></body></html>
