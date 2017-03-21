@@ -321,7 +321,7 @@ source itself (though this information is not needed for assignments).</p>
 <p>There are also two additional fields in the <code>Ray</code> structure that can be helpful in accelerating your intersection computations with bounding boxes (see the <code>BBox</code> class in <i class="icon-file"> </i> <em>bbox.h</em>).  You may or may not find these precomputed values helpful in your computations.</p>
 
 <ul>
-<li><code>Ray.inv_d</code> is a vector holding (1/x, 1/d.y, 1/d.z)</li>
+<li><code>Ray.inv_d</code> is a vector holding (1/d.x, 1/d.y, 1/d.z)</li>
 <li><code>Ray.sin[3]</code> hold indicators of the sign of each component of the ray's direction.</li>
 </ul>
 
@@ -340,7 +340,7 @@ source itself (though this information is not needed for assignments).</p>
 <li><code>t</code>: the ray's t-value of the hit point</li>
 <li><code>n</code>: the normal of the surface at the hit point.  This normal should be the interpolated normal (obtained via interpolation of the per-vertex normals according to the barycentric coordinates of the hit point)</li>
 <li><code>primitive</code>: a pointer to the primitive  that was hit</li>
-<li><code>bsdf</code>: a pointer to the surface brdf at the hit point (obtained via <code>mesh-&gt;get_bsdf()</code>)</li>
+<li><code>bsdf</code>: a pointer to the surface bsdf at the hit point (obtained via <code>mesh-&gt;get_bsdf()</code>)</li>
 </ul></li>
 <li><p>When intersection occurs with the back-face of a triangle (the side of the triangle opposite the direction of the normal) you should <strong>return the normal of triangle pointing away from the side of the triangle that was hit.</strong></p></li>
 <li><p>You would eventually need to distinguish back-face-hit and front-face-hit in your implementation, you might consider adding a flag(e.g. bool is_back_hit) to the 'Intersection' structure.</p></li>
@@ -367,6 +367,8 @@ source itself (though this information is not needed for assignments).</p>
 </ul>
 
 <p>The <code>BVHAccel</code> class maintains an array of all primitives in the BVH (<code>primitives</code>).  The fields <code>start</code> and <code>range</code> in the <code>BVHNode</code> refer the range of contained primitives in this array.</p>
+
+<p>You are highly encouraged to modify the ordering of the <code>primitives</code> array in order to facilitate the construction of the BVH.</p>
 
 <p><strong>Step 1:</strong> Your job is to construct a BVH using the <a href="http://15462.courses.cs.cmu.edu/fall2015/lecture/acceleration/slide_024">Surface Area Heuristic</a> discussed in class.  Tree construction should occur when the <code>BVHAccel</code> object is constructed.</p>
 
@@ -409,15 +411,6 @@ source itself (though this information is not needed for assignments).</p>
 
 <h3>Task 5: Adding Path Tracing</h3>
 
-<p><strong>A few notes before getting started:</strong></p>
-
-<p>The new release of the starter code for tasks 5-7 makes a few changes and improvements to the original starter code of the assignment:</p>
-
-<ul>
-<li><p>The <code>BRDF</code> class has been renamed <code>BSDF</code> (for "bidirectional scattering distribution function") to indicate that the class is now responsible for computing both light that is reflected from the surface, but also light that is refracted as it is transmitted through the surface.  Implementations reside in <i class="icon-file"> </i> <em>bsdf.cpp/h</em>.</p></li>
-<li><p>Rather than use a single hardcoded light source in your <code>Pathtracer::trace_ray()</code> lights are now defined as part of the scene description file.</p></li>
-</ul>
-
 <p>You should change your implementation of the reflectance estimate due to direct lighting in <code>Pathtracer::trace_ray()</code>  to iterate over the list of scene light sources using the following code:</p>
 
 <p><code>for (SceneLight* light : scene-&gt;lights) {
@@ -432,31 +425,32 @@ source itself (though this information is not needed for assignments).</p>
 
 <p>In this task you will modify your ray tracer to add support for indirect illumination.  We wish for you to implement the path tracing algorithm that terminates ray paths using Russian Roulette, as discussed in class.  Recommend that you restructure the code in <code>Pathtracer::trace_ray()</code> as follows:</p>
 
-<p>```
+<pre><code>
 Pathtracer::trace_ray() {
+
   if (surface hit) {
-       //
-       // compute reflectance due to direct lighting only
-       //
-       for each light:
-          accumulate reflectance contribution due to light</p>
+    //
+    // compute reflectance due to direct lighting only
+    //
+    for each light:
+      accumulate reflectance contribution due to light
 
-<pre><code>   //
-   // add reflectance due to indirect illumination
-   //
-   randomly select a new ray direction (it may be
-   reflection or transmittence ray depending on
-   surface type -- see BSDF::sample_f()
 
-   potentially kill path (using Russian roulette)
+    //
+    // add reflectance due to indirect illumination
+    //
+    randomly select a new ray direction (it may be
+    reflection or transmittence ray depending on
+    surface type -- see BSDF::sample_f()
 
-   evaluate weighted reflectance contribution due
-   to light from this direction
-</code></pre>
+    potentially kill path (using Russian roulette)
 
-<p>}
+    evaluate weighted reflectance contribution due
+    to light from this direction
+  }
+
 }
-```</p>
+</code></pre>
 
 <p>As a warmup for the next task, implement <code>BSDF::sample_f</code> for diffuse surfaces (<code>DiffuseBSDF:sample_f</code>). The implementation of <code>DiffuseBSDF::f</code> is already provided to you. After correctly implementing diffuse BSDF and path tracing, your renderer should be able to make a beautifully lit picture of the Cornell Box with:</p>
 
@@ -470,7 +464,7 @@ Pathtracer::trace_ray() {
 <p>Here are a few tips:</p>
 
 <ul>
-<li><p>The termination probability of paths can be determined based on the <a href="http://15462.courses.cs.cmu.edu/fall2015/lecture/globalillum/slide_044">overall throughput</a> of the path (you'll likely need to add a field to the <code>Ray</code> structure to implement this) or based on the value of the BSDF given <code>wo</code> and <code>wi</code> in the current step.  Keep in mind that delta function BRDFs can take on values greater than one, so clamping termination probabilities derived from BRDF values to 1 is wise.</p></li>
+<li><p>The termination probability of paths can be determined based on the <a href="http://15462.courses.cs.cmu.edu/fall2015/lecture/globalillum/slide_044">overall throughput</a> of the path (you'll likely need to add a field to the <code>Ray</code> structure to implement this) or based on the value of the BSDF given <code>wo</code> and <code>wi</code> in the current step.  Keep in mind that delta function BSDFs can take on values greater than one, so clamping termination probabilities derived from BSDF values to 1 is wise.</p></li>
 <li><p>To convert a <code>Spectrum</code> to a termination probability, we recommend you use the luminance (overall brightness) of the Spectrum, which is available via <code>Spectrum::illum()</code></p></li>
 <li><p>We've given you some <a href="http://15462.courses.cs.cmu.edu/fall2015/lecture/globalillum/slide_047">pretty good notes</a> on how to do this part of the assignment, but it can still be tricky to get correct.</p></li>
 <li><p>Also check out <a href="https://cs184.org/article/15">here</a>, and <a href="https://cs184.org/article/16">here</a> for more detailed steps on how to implement shadow rays and path tracing. </p></li>
@@ -484,7 +478,8 @@ Pathtracer::trace_ray() {
 
 <ul>
 <li><code>BSDF::f(wo,wi)</code> evaluates the distribution function for a given pair of directions.</li>
-<li><code>BSDF::sample_f(const Vector3D&amp; wo, Vector3D* wi, float* pdf)</code> generates a random sample <code>wo</code> (which may be a reflection direction or a refracted transmitted light direction). The method returns the value of the distribution function for the pair of directions, and the pdf for the selected sample <code>wi</code>.</li>
+<li><code>BSDF::sample_f(const Vector3D&amp; wo, Vector3D* wi, float* pdf)</code> generates a random sample <code>wi</code> (which may be a reflection direction or a refracted transmitted light direction). The method returns the value of the distribution function for the pair of directions, and the pdf for the selected sample <code>wi</code>.</li>
+<li>Note that <code>BSDF::f(wo,wi)</code> is used in direct lighting calculations, where both the inbound and outbound rays are known. While, <code>BSDF::sample_f(const Vector3D&amp; wo, Vector3D* wi, float* pdf)</code>  is used in indirect lighting calculations, where the wi ray would have to be generated.</li>
 </ul>
 
 <p>There are also two helper functions in the BSDF class that you will need to implement:</p>
@@ -504,7 +499,7 @@ Pathtracer::trace_ray() {
 <li><code>Implement BSDF::refract()</code> to add support for refracted ray paths.</li>
 <li>Use the Fresnel equations to compute the fraction of reflected light and the fraction of transmitted light. Your implementation of</li>
 <li>Implement <code>GlassBSDF::sample_f()</code>.  Your implementation should use the Fresnel equations to compute the fraction of reflected light and the fraction of transmitted light.  The returned ray sample should be either a reflection ray or a refracted ray, with the probability of which type of ray to use for the current path proportional to the Fresnel reflectance. (e.g., If the Fresnel reflectance is 0.9, then you should generate a reflection ray 90% of the time. <strong>What should the pdf be in this case?</strong>)</li>
-<li>You should read <a href="http://15462.courses.cs.cmu.edu/fall2015/article/15">the provided notes</a> on the Fresnel equations as well as on how to compute a transmittance BRDF.</li>
+<li>You should read <a href="http://15462.courses.cs.cmu.edu/fall2015/article/15">the provided notes</a> on the Fresnel equations as well as on how to compute a transmittance BSDF.</li>
 <li>Remember the distinction between back face and front face hits before, they may come in handy here.</li>
 </ul></li>
 </ol>
