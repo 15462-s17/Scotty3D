@@ -206,7 +206,7 @@ img.MathJax_strut {border: 0!important; padding: 0!important; margin: 0!importan
 
 <div class="topbar">
 <div class="topbar_left"><a href="http://www.cs.cmu.edu/%7E15462/">[Home]</a></div>
-<div class="topbar_left"><a href="https://15462-s17.github.io/Scotty3D/Assignment2">[Back]</a></div>
+<div class="topbar_left"><a href="https://15462-s17.github.io/Scotty3D/Assignment3">[Back]</a></div>
 
 
 
@@ -278,6 +278,9 @@ source itself (though this information is not needed for assignments).</p>
 <ul>
 <li><p>Since it'll be hard to know if you camera rays are correct until you implement primitive intersection, we recommend debugging your camera rays by checking what your implementation of <code>Camera::generate_ray()</code> does with rays at the center of the screen (0.5, 0.5) and at the corners of the image.</p></li>
 <li><p>Before starting to write any code, go through the existing code and make sure you understand the camera model we are using.</p></li>
+<li><p>The width and height of the pixel buffer are stored in <code>sampleBuffer.w</code>  and <code>sampleBuffer.h</code>.</p></li>
+<li><p>When <code>ns_aa == 1</code>, you should generate your ray through the center of the pixel, i.e. (x + 0.5, y + 0.5)</p></li>
+<li><p>The camera space ray can be generate by imagining a ray from the camera position to a point on a sensor plane defined by <code>Vector3D(-tan(radians(hFov)*.5), -tan(radians(vFov)*.5),-1)</code> and <code>Vector3D( tan(radians(hFov)*.5),  tan(radians(vFov)*.5),-1)</code> as its bottom left and top right corners. </p></li>
 </ul>
 
 <p><strong>Extra credit ideas:</strong></p>
@@ -340,7 +343,7 @@ source itself (though this information is not needed for assignments).</p>
 <li><code>bsdf</code>: a pointer to the surface brdf at the hit point (obtained via <code>mesh-&gt;get_bsdf()</code>)</li>
 </ul></li>
 <li><p>When intersection occurs with the back-face of a triangle (the side of the triangle opposite the direction of the normal) you should <strong>return the normal of triangle pointing away from the side of the triangle that was hit.</strong></p></li>
-<li><p>If you need to distinguish back-face-hit and front-face-hit in your implementation, you might consider adding a flag(e.g. bool is_back_hit) to the 'Intersection' structure.</p></li>
+<li><p>You would eventually need to distinguish back-face-hit and front-face-hit in your implementation, you might consider adding a flag(e.g. bool is_back_hit) to the 'Intersection' structure.</p></li>
 </ul>
 
 <p>Once you've successfully implemented triangle intersection, you will be able to render many of the scenes in the scenes directory (<i class="icon-folder"> </i> <em>/dae</em>)).  However, your ray tracer will be <strong>very slow!</strong></p>
@@ -470,6 +473,7 @@ Pathtracer::trace_ray() {
 <li><p>The termination probability of paths can be determined based on the <a href="http://15462.courses.cs.cmu.edu/fall2015/lecture/globalillum/slide_044">overall throughput</a> of the path (you'll likely need to add a field to the <code>Ray</code> structure to implement this) or based on the value of the BSDF given <code>wo</code> and <code>wi</code> in the current step.  Keep in mind that delta function BRDFs can take on values greater than one, so clamping termination probabilities derived from BRDF values to 1 is wise.</p></li>
 <li><p>To convert a <code>Spectrum</code> to a termination probability, we recommend you use the luminance (overall brightness) of the Spectrum, which is available via <code>Spectrum::illum()</code></p></li>
 <li><p>We've given you some <a href="http://15462.courses.cs.cmu.edu/fall2015/lecture/globalillum/slide_047">pretty good notes</a> on how to do this part of the assignment, but it can still be tricky to get correct.</p></li>
+<li><p>Also check out <a href="https://cs184.org/article/15">here</a>, and <a href="https://cs184.org/article/16">here</a> for more detailed steps on how to implement shadow rays and path tracing. </p></li>
 </ul>
 
 <h3>Task 6: Adding New Materials</h3>
@@ -501,6 +505,7 @@ Pathtracer::trace_ray() {
 <li>Use the Fresnel equations to compute the fraction of reflected light and the fraction of transmitted light. Your implementation of</li>
 <li>Implement <code>GlassBSDF::sample_f()</code>.  Your implementation should use the Fresnel equations to compute the fraction of reflected light and the fraction of transmitted light.  The returned ray sample should be either a reflection ray or a refracted ray, with the probability of which type of ray to use for the current path proportional to the Fresnel reflectance. (e.g., If the Fresnel reflectance is 0.9, then you should generate a reflection ray 90% of the time. <strong>What should the pdf be in this case?</strong>)</li>
 <li>You should read <a href="http://15462.courses.cs.cmu.edu/fall2015/article/15">the provided notes</a> on the Fresnel equations as well as on how to compute a transmittance BRDF.</li>
+<li>Remember the distinction between back face and front face hits before, they may come in handy here.</li>
 </ul></li>
 </ol>
 
