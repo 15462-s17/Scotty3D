@@ -1,0 +1,247 @@
+<!doctype html>
+<html>
+<head>
+<title>Assignment 4 : Computer Graphics : 15-462/662 Spring 2017</title>
+
+<script src="http://use.edgefonts.net/open-sans:n3,i3,n4,i4,n6,i6,n7,i7,n8,i8.js"></script>
+<script src="http://use.edgefonts.net/open-sans-condensed:n3,i3,n7.js"></script>
+
+<script src="http://15462.courses.cs.cmu.edu/fall2016/assets/third_party/jquery/1.8.3/jquery.min.js"></script>
+<script src="http://15462.courses.cs.cmu.edu/fall2016/assets/third_party/jquery/timeago/jquery.timeago.js"></script>
+<script src="http://15462.courses.cs.cmu.edu/fall2016/assets/third_party/jquery/cookie/jquery.cookie.js"></script>
+
+<script src="http://15462.courses.cs.cmu.edu/fall2016/assets/third_party/codemirror-3.0/lib/codemirror.js"></script>
+<script src="http://15462.courses.cs.cmu.edu/fall2016/assets/third_party/codemirror-3.0/mode/markdown/markdown.js"></script>
+
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<!--
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  skipStartupTypeset: true,
+  showProcessingMessages: false,
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});
+</script>
+-->
+
+<link rel="stylesheet" type="text/css" href=" http://15462.courses.cs.cmu.edu/fall2016/assets/third_party/codemirror-3.0/lib/codemirror.css">
+
+<script src="http://15462.courses.cs.cmu.edu/fall2016/assets/third_party/google-code-prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href=" http://15462.courses.cs.cmu.edu/fall2016/assets/third_party/google-code-prettify/prettify.css">
+
+<!-- NOTE(kayvonf): place at end to override 3rd party tools -->
+<link rel="stylesheet" type="text/css" href=" http://15462.courses.cs.cmu.edu/fall2016/assets/css/main.css">
+
+<script type="text/javascript">
+var edit_comment_url = "http://15462.courses.cs.cmu.edu/fall2016/comments/ajax_edit_comment";
+var delete_comment_url = "http://15462.courses.cs.cmu.edu/fall2016/comments/ajax_delete_comment";
+var archive_comment_url = "http://15462.courses.cs.cmu.edu/fall2016/comments/ajax_archive_comment";
+var add_private_comment_url = "http://15462.courses.cs.cmu.edu/fall2016/comments/ajax_add_private_comment";
+var add_instructor_comment_url = "http://15462.courses.cs.cmu.edu/fall2016/comments/ajax_add_instructor_comment";
+var add_comment_url = "http://15462.courses.cs.cmu.edu/fall2016/comments/ajax_add_comment";
+var comment_vote_url = "http://15462.courses.cs.cmu.edu/fall2016/comments/ajax_comment_vote";
+var toggle_subscribe_url = "http://15462.courses.cs.cmu.edu/fall2016/comments/ajax_toggle_subscribe";
+var prompt_students_url = "http://15462.courses.cs.cmu.edu/fall2016/comments/ajax_prompt_students";
+var keep_alive_url = "http://15462.courses.cs.cmu.edu/fall2016/keep_alive";
+</script>
+
+<script type="text/javascript" src="http://15462.courses.cs.cmu.edu/fall2016/assets/js/main.js"></script>
+<script type="text/javascript" src="http://15462.courses.cs.cmu.edu/fall2016/assets/js/comments.js"></script>
+
+</head>
+<body>
+
+<div id="modal_overlay"></div>
+
+<div class="main_container">
+
+<div class="topbar">
+<div class="topbar_left"><a href="http://cs.cmu.edu/~15462">[Home]</a></div>
+
+<div class="topbar_right">
+
+</div>
+
+</div>
+
+<div class="content_container">
+
+<!-- end of header -->
+
+
+
+
+
+
+<div class="article_container">
+
+<div class="common_title title">Assignment 4</div>
+
+<hr size="1">
+
+
+<div class="markdown article-content">
+<p><img src="http://15462.courses.cs.cmu.edu/fall2016content/Scotty3D/images/Scotty3DLogo.svg" alt="Scotty3DLogo" /></p>
+
+<h3>Overview</h3>
+
+<p>Your current assignment focuses on the Animation component of Scotty3D.</p>
+
+<h3>Important Information</h3>
+
+<p><strong>Due Date:</strong> May 1st, 2017 11:59pm</p>
+
+<p>You will need three things to complete this assignment:</p>
+
+<ol>
+<li><p>The <a href="https://github.com/15462-s17/Scotty3D">skeleton code for Scotty3D</a>---the specific files you will modify are specified in Developer Manual with individual tasks. This is the same code base as you used for A2 and A3, but with some changes made for A4. You will modify different files for A4.</p></li>
+<li><p>The <a href="https://15462-s17.github.io/Scotty3D/UserGuide.html">User Guide</a> explains how to <em>use</em> the software to an end-user.</p></li>
+<li><p>The <a href="http://15462-s17.github.io/Scotty3D/Assignment4_DeveloperManual.html">Developer Manual</a> explains low-level details and internals of the code to a software developer.</p></li>
+</ol>
+
+<p>Note that the User Guide is <strong>not</strong> the Assignment Writeup. The User Guide contains only instructions on how to use the software, and serves as a high-level specification of <em>what the software should do</em>. The Developer Guide contains information about the internals of the code, i.e., <em>how the software works</em>.  This division is quite common in software development: there is a <strong>design specification</strong> or "design spec", and an <strong>implementation</strong> that implements that spec.  Also, as in the real world, the design spec does <em>not</em> necessarily specify every tiny detail of how the software should behave!  Some behaviors may be undefined, and some of these details are left up to the party who implements the specification.  A good example you have already seen is OpenGL, which defines some important rules about how rasterization should behave, but is not a "pixel-exact" specification.  In other words, two different OpenGL implementations from two different vendors (Intel and NVIDIA, say) may produce images that differ by a number of pixels.  Likewise, in this assignment, your implementation may differ from the implementation of your classmates in terms of the exact values it produces, or the particular collection of corner-cases it handles.  However, as a developer you should strive to provide a solution that meets a few fundamental criteria:</p>
+
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Fault_tolerance">Failing gracefully</a> is preferable to failing utterly---for instance, if a rare corner case is difficult to handle, it is far better to simply refuse to perform the operation than to let the program crash!</li>
+<li>Your implementation should follow the <a href="https://en.wikipedia.org/wiki/Principle_of_least_astonishment">principle of least surprise</a>.  A user should be able to expect that things behave more or less as they are described in the User Guide.</li>
+<li>You should not use an algorithm whose performance is <a href="https://en.wikipedia.org/wiki/Asymptotic_computational_complexity">asymptotically worse</a> just because it makes your code easier to write (for instance, using <a href="https://en.wikipedia.org/wiki/Bubble_sort">bubble sort</a> rather than <a href="https://en.wikipedia.org/wiki/Merge_sort">merge sort</a> on large data sets).</li>
+<li>That being said, when it comes to performance, <a href="https://en.wikipedia.org/wiki/Program_optimization#When_to_optimize">premature optimization is the root of all evil!</a>  The only way to know whether an optimization matters is to <a href="https://en.wikipedia.org/wiki/Profiling_(computer_programming)">measure performance</a>, and understand <a href="https://en.wikipedia.org/wiki/Program_optimization#Bottlenecks">bottlenecks</a>.</li>
+<li>Finally, you should take <a href="http://thenextweb.com/apple/2011/10/24/steve-jobs-obsession-with-the-quality-of-the-things-unseen/#gref">pride in your craft</a>.  Beautiful things just tend to work better.</li>
+</ul>
+
+<p>Just to reiterate the main point above:</p>
+
+<p><strong>As in real-world software development, we will not specify every little detail about how methods in this assignment should work!</strong></p>
+
+<p>If you encounter a tough corner case (e.g., "how should edge flip behave for a tetrahedron"), we want you to <em>think about what a good <strong>design choice</strong> might be</em>, and implement it to the best of your ability.  This activity is part of becoming a world-class developer.  However, we are more than happy to discuss good design choices with you, and you should also feel free to discuss these choices with your classmates.  Practically speaking, it is ok for routines to simply exit if they encounter a rare and difficult corner case---as long as it does not interfere with successful operation of the program (i.e., if it does not crash or yield bizarre behavior).  Your main goal here above all else should be to develop <em>effective tool for modeling, rendering, and animation</em>.</p>
+
+<h3>Getting started</h3>
+
+<p>The basic code skeleton will be distrbuted via <a href="https://en.wikipedia.org/wiki/Git">Git</a>.  This skeleton includes basic functionality (e.g., file loading/saving, a graphical user interface, etc.), but the core software features have been removed.  You can find the repository for this assignment at <a href="https://github.com/15462-s17/Scotty3D">https://github.com/15462-s17/Scotty3D</a>. If you are unfamiliar with git, run</p>
+
+<p><code>$ git pull</code></p>
+
+<p>to get the updated code base, or, if you prefer, run</p>
+
+<p><code>$ git clone https://github.com/15462-s17/Scotty3D.git</code></p>
+
+<p>to start with a new copy. You will have to manually merge your code for A2 if you do <code>git clone</code>. If you are unfamiliar with git, backup your work.</p>
+
+<h3>Build Instructions</h3>
+
+<p>In order to ease the process of running on different platforms, we will be using <a href="http://www.cmake.org" title="CMake Homepage">CMake</a> for our assignments. You will need a CMake installation of version 2.8+ to build the code for this assignment. The GHC 5xxx cluster machines have all the packages required to build the project. It should also be relatively easy to build the assignment and work locally on your OSX or Linux. Building on Windows is currently in beta support.</p>
+
+<p>If you are working on OS X and do not have CMake installed, we recommend installing it through <a href="https://www.macports.org/">Macports</a>:</p>
+
+<p><code>sudo port install cmake</code></p>
+
+<p>Or <a href="http://brew.sh/">Homebrew</a>:</p>
+
+<p><code>brew install cmake</code></p>
+
+<p>To build your code for this assignment:</p>
+
+<p>Create a directory to build your code:</p>
+
+<p><code>$ cd Scotty3D &amp;&amp; mkdir build &amp;&amp; cd build</code></p>
+
+<p>Run CMake to generate makefile:</p>
+
+<p><code>$ cmake ..</code></p>
+
+<p>Build your code:</p>
+
+<p><code>$ make</code></p>
+
+<p>Install the executable:</p>
+
+<p><code>$ make install</code></p>
+
+<h4>Windows Build Instructions</h4>
+
+<p>We have a beta build support for Windows systems. You need to install the latest version of <a href="http://www.cmake.org" title="CMake Homepage">CMake</a> and install Visual Studio 2015 from <a href="https://www.cmu.edu/computing/software/all/dreamspark/">CMU Dreamspark web store</a>. After installing these programs, you can run <code>runcmake_win.bat</code> by double-clicking on it. This should create a <code>build</code> directory with a Visual Studio solution file in it named <code>Scotty3D.sln</code>. You can double-click this file to open the solution in Visual Studio.</p>
+
+<p>If you plan on using Visual Studio to debug your program, you can change <code>scotty3D</code> project in the Solution Explorer as the startup project by right-clicking on it and selecting <code>Set as StartUp Project</code>. You can also set the commandline arguments to the project by right-clicking <code>scotty3D</code> project again, selecting <code>Properties</code>, going into the <code>Debugging</code> tab, and setting the value in <code>Command Arguments</code>. If you want to run the program with the default cube file, you can set this command argument to <code>../../cube.dae</code>. After setting all these, you can hit F5 to build your program and run it with the debugger.</p>
+
+<p>If you feel that your program is running slowly, you can also change the build mode to <code>Release</code> from <code>Debug</code> by clicking the Solution Configurations drop down menu on the top menu bar. Note that you will have to set <code>Command Arguments</code> again if you change the build mode.</p>
+
+<h3>Using the Scotty3D App</h3>
+
+<p>When you have successfully built your code, you will get an executable named <strong>scotty3d</strong>. The <strong>scotty3d</strong> executable takes exactly one argument from the command line. You may load a single COLLADA file by specifying its path.  Initially we have provided only a simple cube mesh <i class="icon-file"> </i><em>cube.dae</em>, but as you develop the software you will be able to create (and save) more and more interesting surfaces.  You can load the cube from the build directory by running</p>
+
+<p><code>./scotty3d ../cube.dae</code></p>
+
+<p>See more in the User Guide on <a href="https://15462-s17.github.io/Scotty3D/UserGuide.html">Github, Scotty3d UserGuide</a>.</p>
+
+<p>Note that since most of the features of Scotty3D have not yet been implemented, you may encounter occasional unexpected behavior (even crashes!).  Your goal is to replace these blank routines with stable implementations.</p>
+
+<h3>Handin Instructions</h3>
+
+<p>Your handin directory is on AFS under:</p>
+
+<p><code>/afs/cs/academic/class/15462-s17-users/ANDREWID/asst4/</code></p>
+
+<p>Note that you may need to create the <code>asst4</code> directory yourself. All your files should be placed there. Please make sure you have a directory and are able to write to it well before the deadline; we are not responsible if you wait until 10 minutes before the deadline and run into trouble. Also, you may need to run <code>aklog cs.cmu.edu</code> after you login in order to read from/write to your submission directory.</p>
+
+<p>You should submit all files needed to build your project, this includes:</p>
+
+<ul>
+<li>The <code>src</code> folder with all your source files</li>
+<li>README file described below</li>
+</ul>
+
+<p>Please do not include:</p>
+
+<ul>
+<li>The <code>build</code> folder</li>
+<li>Executables</li>
+<li>Any additional binary or intermediate files generated in the build process.</li>
+</ul>
+
+<p>You should include a <code>README</code> file &#40;plaintext, MarkDown, or PDF&#41; indicating which features you chose to implement, including any features implemented for extra credit.  You should also briefly state any other issues the grader should be aware of.</p>
+
+<p>Do not add levels of indirection when submitting. And please use the same arrangement as the handout. We will enter your handin directory, and run:</p>
+
+<p><code>mkdir build &amp;&amp; cd build &amp;&amp; cmake .. &amp;&amp; make</code></p>
+
+<p>and your code should build correctly. The code must compile and run on the GHC 5xxx cluster machines. Be sure to check to make sure you submit all files and that your code builds correctly.</p>
+
+<h3>Evaluation</h3>
+
+<p>Your code must run on the GHC 5xxxx cluster machines as we will grade on those machines. Do not wait until the submission deadline to test your code on the cluster machines. Keep in mind that there is no perfect way to run on arbitrary platforms. If you experience trouble building on your computer, while the staff may be able to help, but the GHC 5xxx machines will always work and we recommend you work on them.</p>
+
+<p>The assignment consists of a total of 100 pts. The point breakdown is as follows:</p>
+
+<ul>
+<li>Task 1 Spline Interpolation:  15</li>
+<li>Task 2 Forward and Inverse Kinematics:  25</li>
+<li>Task 3 Linear Blend Skinning:  25</li>
+<li>Task 4 Physical Simulation:  20</li>
+<li>Task 5 Get Creative: 10</li>
+<li>Include a helpful README: 5</li>
+</ul></div>
+
+
+</div>
+
+<hr size="1">
+
+<div class="footer">
+     Copyright 2017 Carnegie Mellon University
+</div>
+
+
+</div>  <!-- end of content_container (defined in header.php) -->
+</div>  <!-- end main_container (defined in header.php) -->
+
+
+</body>
+</html>
+
+
