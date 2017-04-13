@@ -14,7 +14,11 @@
 <script src="Assignment2_DeveloperManual_files/codemirror.js"></script>
 <script src="Assignment2_DeveloperManual_files/markdown.js"></script>
 
-<script type="text/javascript" src="Assignment2_DeveloperManual_files/MathJax.js">
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<!-- <script type="text/javascript" src="Assignment2_DeveloperManual_files/MathJax.js"> -->
 </script><style type="text/css">.MathJax_Preview {color: #888}
 #MathJax_Message {position: fixed; left: 1px; bottom: 2px; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
 #MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
@@ -297,7 +301,7 @@ img.MathJax_strut {border: 0!important; padding: 0!important; margin: 0!importan
 <p>In other words, a reasonable guess for the tangent is given by the difference between neighboring points. (See the Wikipedia and our course slides for more details.)</p>
 
 <div >
-<img src="https://15462.courses.cs.cmu.edu/fall2016content/article_images/26_1.jpg" alt="Catmull-Rom Spline Interpolation"/>
+<img src="http://15462.courses.cs.cmu.edu/fall2016content/article_images/26_1.jpg" alt="Catmull-Rom Spline Interpolation"/>
 </div>
 
 <p>This scheme works great if we have two well-defined knots on either side of the query time t. But what happens if we get a query time near the beginning or end of the spline? Or what if the spline contains fewer than four knots? We still have to somehow come up with a reasonable definition for the positions and tangents of the curve at these times. For this assignment, your Catmull-Rom spline interpolation should satisfy the following properties:</p>
@@ -338,7 +342,7 @@ img.MathJax_strut {border: 0!important; padding: 0!important; margin: 0!importan
 <p>When a joint's parent is rotated, that transformation should be propagated down to all of its children. In the diagram below, $c_0$ is the parent of $c_1$ and $c_1$ is the parent of $c_2$. When a translation of $x_0$ and rotation of $\theta_0$ is applied to $c_0$, all of the descendants are affected by this transformation as well. Then, $c_1$ is rotated by $\theta_1$ which affects itself and $c_2$. Finally, when rotation of $\theta_2$ is applied to $c_2$, it only affects itself because it has no children.</p>
 
 <div >
-<img src="https://15462.courses.cs.cmu.edu/fall2016content/article_images/26_2.jpg" alt="Forward Kinematics"/>
+<img src="http://15462.courses.cs.cmu.edu/fall2016content/article_images/26_2.jpg" alt="Forward Kinematics"/>
 </div>
 
 <p>You need to implement these routines in <code>dynamic_scene/joint.cpp</code> for forward kinematics.</p>
@@ -428,10 +432,10 @@ Returns the end position of the joint in world coordinate frame.</li>
 
 <p>After you implemented the method in Task 3a, you probably noticed that parts of the mesh that is very far away moves when you move a joint. In part 3b, we will implement a threshold to limit the volume that each joint affects. You should change your code such that when parameter <code>useCapsuleRadius</code> is true, you check the distance between the vertex and the closest point on the joint, and if it is more than the joint's capsuleRadius, you do not let that joint affect this vertex.</p>
 
-<p><img src="https://15462.courses.cs.cmu.edu/fall2016content/article_images/26_5.jpg" width="700px" alt="Naive Linear Blend Skinning"/>
+<p><img src="http://15462.courses.cs.cmu.edu/fall2016content/article_images/26_5.jpg" width="700px" alt="Naive Linear Blend Skinning"/>
 <center>Naive linear blend skinning affects other parts of the mesh, not just the leg. Also, the leg does not follow the joint exactly because other joints hold it back.</center></p>
 
-<p><img src="https://15462.courses.cs.cmu.edu/fall2016content/article_images/26_6.jpg" width="700px" alt="Linear Blend Skinning with Threshold"/>
+<p><img src="http://15462.courses.cs.cmu.edu/fall2016content/article_images/26_6.jpg" width="700px" alt="Linear Blend Skinning with Threshold"/>
 <center>Linear blend skinning with threshold allows us to better pose our characters.</center></p>
 
 <h2>Task 4 - Physical Simulation</h2>
@@ -443,7 +447,7 @@ Returns the end position of the joint in world coordinate frame.</li>
  $$\Delta u = \frac{1}{2}\sum_j (\cot \alpha_{ij} + \cot \beta_{ij})(u_j - u_i)$$</p>
 
 <div >
-<img src="https://15462.courses.cs.cmu.edu/fall2016content/article_images/26_.jpg" alt="Laplacian On a Triangle Mesh"/>
+<img src="http://15462.courses.cs.cmu.edu/fall2016content/article_images/26_.jpg" alt="Laplacian On a Triangle Mesh"/>
 </div>
 
 <p>For this task, you should update <code>Vertex::Laplacian</code> in <code>halfedgeMesh.cpp</code> and <code>Mesh::forwardEuler</code> and <code>Mesh::symplecticEuler</code> in <code>dynamic_scene/mesh.cpp</code>, storing your calculated <code>u</code> value in <code>Vertex::offset</code> and the calculated <code>u'</code> value in <code>Vertex::velocity</code>. Be careful about when you update these quantities. Note that since forward Euler is defined to solve a single, first-order differential equation, solving a second-order one will require you to break it up into 2 first order equations and solve each of them with forward Euler.</p>
